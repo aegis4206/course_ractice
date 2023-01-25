@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        div {
+            width: 100%;
+            padding: 100px;
+        }
+
+        .one {
+            background: thistle;
+        }
+
+        .two {
+            background: mistyrose;
+        }
+
+        .three {
+            background: coral;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <div class="two">
+            <div class="three">
+            </div>
+        </div>
+    </div>
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+    <script>
+        // $('div').get(0).addEventListener('click',e => console.log(e.target.className,e.currentTarget.className,e.composedPath()),{capture:true,once:false})
+        const divs = document.querySelectorAll('div');
+        divs.forEach(div => {
+            div.addEventListener('click', log, { capture: false, once: false });
+            function log(e) {
+                e.stopPropagation();
+                console.log(e.target.className, this.className);
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

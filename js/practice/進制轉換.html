@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        input,button,p,select{
+            height: 80px;
+            font-size: 40px;
+        }
+
+    </style>
+    
+
+</head>
+
+<body>
+    <input type="text" placeholder="請輸入轉換數字" id="value">
+    <select  id="list">
+        <option data-key="getbinary">二進制</option>
+        <option data-key="get8">八進制</option>
+        <option data-key="get16">十六進制</option>
+    </select>
+    <button id="btn">轉換</button>
+    <p id="ans"></p>
+    <h2><a href="../../index.html">請按此返回首頁</a></h2>
+
+
+<script>
+    let btn = document.getElementById('btn');
+    let value = document.getElementById('value');
+    let ans = document.getElementById('ans');
+    let list = document.getElementById('list');
+    btn.addEventListener('click',getAns);
+    function getAns(){
+        if(value.value<=0||isNaN(value.value)){
+            ans.innerText='請輸入不為0的數字';
+        }
+        else{
+            switch(list.options[list.selectedIndex].dataset.key){
+            case "getbinary":
+                ans.innerText="答案為"+getbinary(parseInt(value.value));
+                break;
+            case "get8":
+                ans.innerText="答案為"+get8(parseInt(value.value));
+                break;
+            case "get16":
+                ans.innerText="答案為"+get16(parseInt(value.value));
+                break;
+        }
+        }
+    };
+        function getbinary(x) {
+            let count = "";
+            while (x != 1) {
+
+                if (x % 2 == 0) {
+                    count = "0" + count;
+                }
+                else {
+                    count = "1" + count;
+                }
+                x = parseInt(x / 2);
+
+            }
+            if (x == 1) {
+                count = "1" + count;
+            }
+
+            return count;
+        }
+    
+    
+    
+
+
+
+        function get8(x) {
+            let a = "";
+            let count = "";
+            while (x >= 8) {
+                a = x % 8;
+                x = parseInt(x / 8);
+                count = a + count;
+            }
+            if (x < 8) {
+                count = x + count;
+
+            }
+
+            return count;
+        }
+        
+        
+    
+
+        
+
+    function get16(x) {
+            let a = "";
+            let count = "";
+            let array = new Array("A", "B", "C", "D", "E", "F");
+            while (x >= 16) {
+                a = x % 16;
+                x = parseInt(x / 16);
+                if (a >= 10) {
+                    a = array[a - 10];
+                }
+                count = a + count;
+
+            }
+            if (x >= 10) {
+                x = array[x - 10];
+                count = x + count;
+            }
+            else {
+                count = x + count;
+            }
+            return count;
+        }
+
+    
+
+
+</script>
+</body>
+
+</html>

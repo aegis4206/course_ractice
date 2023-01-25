@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="MusicPlayer.css">
+    <title></title>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <!-- <video src="abc.mp4" controls></video></br> -->
+
+    <audio id="player" src="abc.mp3"  title="abc">
+        <source type= "audio/mp3">
+    </audio>
+    
+
+
+    <div id="ControlPanel">
+        <select name="MusicList" id="List">
+            <!-- <option value="abc.mp3">abc</option>
+            <option value="def.mp3">def</option>
+            <option value="gh.mp3">gh</option> -->
+
+        </select>
+        <hr />
+        <span id="play">4</span>
+        <!-- <span id="pause">;</span> -->
+        <span id="stop">&#060;</span>
+        <span id="preSong">9</span>
+        <span id="back">7</span>
+        <span id="forward">8</span>
+        <span id="nextSong">:</span>
+        <span id="muted">V</span>
+        <span id="loop">q</span>
+        <span id="random">s</span>
+        <span id="allLoop" class="clicked">`</span>
+        <span id="songbook">@</span>
+        <hr><hr>
+        <input id="durChange" type="range" min="0" max="" value="0" step="1">
+        <div id="settime">
+            <div id="progress"></div>
+        </div>
+
+        <p id="dur"></p>    
+        <input id="volume" type="range" min="0" max="100" value="100" step="1">
+        <label id="volumeView"for="volume">音量100</label>
+        
+        <hr />
+        <marquee behavior="" direction="" id="info2">全曲循環</marquee>
+        <hr />
+        <marquee behavior="" direction="" id="info">請按播放鈕~~~</marquee>
+        
+        
+        
+    </div>
+
+    <div id="book" class="hidden">
+        <div id="Sbook" >
+            <div title="abc.mp3">abc</div>
+            <div title="def.mp3">def</div>
+            <div title="gh.mp3">gh</div>
+        </div>
+        <div id="Tbook"></div>
+        <input id="btnUpdateMusic" type="button" value="更新歌單">
+    </div>
+
+
+
+<script src="MusicPlayer.js"></script>
+</body>
+
+</html>

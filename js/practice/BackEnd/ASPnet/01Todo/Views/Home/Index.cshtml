@@ -1,0 +1,66 @@
+﻿@model IEnumerable<_01Todo.Models.ToDo>
+
+@{
+    ViewBag.Title = "待辦事項";
+}
+
+<h2>待辦事項</h2>
+
+<p>
+    @*@Html.ActionLink("新增待辦事項", "Create")*@
+    @*上下相等*@
+    <a href="/Home/Create">新增待辦事項</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            編號
+        </th>
+        <th>
+            標題
+            @*@Html.DisplayNameFor(model => model.Title)*@
+        </th>
+        <th>
+            圖示
+            @*@Html.DisplayNameFor(model => model.Image)*@
+        </th>
+        <th>
+            結案日
+            @*@Html.DisplayNameFor(model => model.Date)*@
+        </th>
+        <th>
+            管理
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.ID
+            @*@Html.DisplayFor(modelItem => item.ID)*@
+        </td>
+        <td>
+            @item.Title
+            @*@Html.DisplayFor(modelItem => item.Title)*@
+        </td>
+        <td>
+            <img src="~/images/@item.Image" width="30" />
+            @*@Html.DisplayFor(modelItem => item.Image)*@
+        </td>
+        <td>
+            @item.Date.ToShortDateString()
+            @*@Html.DisplayFor(modelItem => item.Date)*@
+        </td>
+        <td>
+            <a href="/Home/Edit?id=@item.ID">編輯</a>
+            @*上下相等*@
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.ID }) |*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+            <a href="/Home/Delete?id=@item.ID" onclick="return confirm('您確定要刪除嗎?')">刪除</a>
+
+        </td>
+    </tr>
+}
+
+</table>

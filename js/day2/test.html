@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        .BG{
+            width: 100%;
+            height: 100%;
+            /* border: 1px solid; */
+        }
+        .hour{
+            width: 25%;
+            height: 6px;
+            top: 50%;
+            z-index: 3;
+            position: absolute;
+            background-color: rgb(3, 3, 3);
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            right: 50%;
+            box-shadow: 3px 3px 3px black;
+            transition: all 0.05s;
+
+        }
+        .min{
+            width: 35%;
+            height: 6px;
+            top: 50%;
+            z-index: 2;
+            position: absolute;
+            background-color: rgb(3, 3, 3);
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            right: 50%;
+            box-shadow: 3px 3px 3px black;
+            transition: all 0.05s;
+
+        }
+        .sec{
+            width: 45%;
+            height: 6px;
+            top: 50%;
+            z-index: 1;
+            position: absolute;
+            background-color: rgb(3, 3, 3);
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            right: 50%;
+            box-shadow: 3px 3px 3px black;
+            transition: all 0.05s;
+
+        }
+        .clock{
+            background-color: white;
+            border: 20px solid;
+            border-color: rgb(228, 162, 21);
+            border-radius: 50%;
+            width: 20em;
+            /* min-width: 50vh; */
+            height: 20em;
+            /* min-height: 50vh; */
+
+            text-align: center;
+            margin: auto;
+            /* padding: 10px; */
+            position: relative;
+
+            box-shadow: 3px 3px 8px black;
+        }
+        body{
+            background-color: bisque;
+            display:flex;
+            align-items: center;
+            min-height: 100vh;
+
+        }
+        html{
+            text-align: center;
+            margin: auto;
+            font-size: 20px;
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="BG">
+        <div class="clock">
+            <div class="hour"></div>
+            <div class="min"></div>
+            <div class="sec"></div>
+        </div>
+        
+
+
+    </div>
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+
+    <script>
+
+        // $(".hour").css("transform","rotate(150deg)");
+
+        function showTime() {
+            let getTime = new Date();
+            var h = getTime.getHours() ;
+            var m = getTime.getMinutes() ;
+            var s = getTime.getSeconds() ;
+            $(".sec").css("transform","rotate("+(90+s*6)+"deg)");
+            $(".min").css("transform","rotate("+(90+m*6)+"deg)");
+            h = h > 12 ? h-12 : h;
+            $(".hour").css("transform","rotate("+(90+h*30+m*0.5)+"deg)");
+
+            
+
+            
+            
+            setTimeout(showTime,1000);
+            }
+
+    showTime();
+
+    </script>
+
+</body>
+
+</html>

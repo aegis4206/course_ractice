@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+    <div class="words">
+        <input id="Text1" type="text" placeholder="請輸入書名或作者">
+        <input id="Button1" type="button" value="搜尋">
+        <table id="booklist">
+    </div>
+
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+    <script>
+        data = [];
+        $('#Button1').click(
+            function () {
+                $('#booklist').empty();
+                $.ajax({
+                    type: 'get',
+                    dataType: 'json',
+                    url: "https://cors-anywhere.herokuapp.com/https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_AVG_ALL",
+
+
+                }).done(function (temp) {
+                    data = Array.from(temp);
+                    $('.words').append(data.filter(e => e.Code == "0050").map(e => {
+                       return `<p>代碼${e.Code}名稱${e.Name}收盤價${e.ClosingPrice}月平均價${e.MonthlyAveragePrice}</p>`;
+                    }                       
+                    ).join(''))
+                })
+
+            });
+        
+
+    </script>
+
+
+
+</body>
+
+</html>

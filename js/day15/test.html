@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        html {
+            background-color: gray;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+        }
+
+        .wrapper {
+            padding: 20px;
+            width: 700px;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin: 0;
+            font-weight: 200;
+        }
+
+        .plates {
+            margin: 0;
+            /* padding: 0; */
+            text-align: left;
+            list-style: none;
+            /*清除li預設圖示*/
+        }
+
+        .plates li {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 10px 0;
+            font-weight: 100;
+            display: flex;
+        }
+
+        .plates label {
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .plates input {
+            display: none;
+        }
+
+        .plates input+label:before {
+            content: '⬜️';
+            margin-right: 10px;
+        }
+
+        .plates input:checked+label:before {
+            content: '🟩';
+        }
+
+        .add-items {
+            margin-top: 20px;
+            
+        }
+
+        .add-items input {
+            padding: 10px;
+            outline: 2px ridge rgba(170, 50, 220, .6);
+            border-radius: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 30px;
+        }
+
+        input:last-child {
+            margin-left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h2>待辦事項(🟩=已完成)</h2>
+        <p></p>
+        <ul class="plates">
+            <li>尚無待辦事項...</li>
+        </ul>
+        <form class="add-items">
+            <input type="text" name="item" placeholder="輸入待辦事項" required>
+            <input type="submit" value="新增事項">
+        </form>
+    </div>
+
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+    <script>
+        $(':submit').click(e => {
+            e.preventDefault();
+            const a = $('input[name="item"]').val();
+            const item = {
+                text: a,
+                done: false
+            }
+            temp.push(item);
+            localStorage.setItem('list', JSON.stringify(temp));
+            updateList(temp);
+            $('input[name="item"]').val("");
+        });
+        function updateList(list) {
+            if (list.length === 0) {
+                return;
+            }
+            $('.plates').html(list.map((value, index) => {
+                return `
+            <li>
+                <input type="checkbox" data-index="${index}" id="item${index}" ${value.done ? 'checked' : ''}>
+                <label for="item${index}">${value.text}</label>
+            </li>
+            `
+            }).join(''));
+        };
+
+
+        const temp = JSON.parse(localStorage.getItem('list')) || [];
+        updateList(temp);
+
+        $('.plates').click(e => {
+            if (e.target.matches('input')) {
+                index = e.target.dataset.index;
+                temp[index].done = !temp[index].done;
+
+                localStorage.setItem('list', JSON.stringify(temp));
+                updateList(temp);
+            }
+        });
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

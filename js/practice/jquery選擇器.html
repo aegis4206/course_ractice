@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="list">
+        <li>aaa</li>
+        <li>bbb
+            <ul >
+                <li>aaaa</li>
+                <li>bbbb</li>
+                <li>cccc</li>
+            </ul>
+        </li>
+        <li>ccc</li>
+    </ul>
+
+    <script src="jquery-3.6.1.js"></script>
+    <script>
+        // #是id .是class 都不加是標籤
+         $('#list>li>ul>li:nth-child(2n+1)').addClass('red');
+        //選擇器   #指定id  #list>li往下所有li子節點
+        //#list li 搜尋所有li的節點(包括子節點中的子節點)
+        // :nth-child(數字) 數字指定第幾個子節點 也可以2n+1=奇數列  2n=偶數列
+        // :contains("包含文字的標籤")
+        // [標籤*="字元"]為在標籤內找任何有該字元的
+        // [標籤$="字元"]為在標籤內找結尾有該字元的
+        // [標籤^="字元"]為在標籤內找開頭有該字元的
+
+        console.log(list.children.length);
+    </script>
+</body>
+
+</html>

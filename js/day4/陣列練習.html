@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    
+
+    <script src="jquery-3.6.1.js"></script>
+
+    <script>
+        const monkeys=[
+            {first:'Andy',last:'Tsai',banana:18,bala:14},
+            {first:'O',last:'Tree',banana:16,bala:3},
+            {first:'Frog',last:'X',banana:23,bala:12},
+            {first:'Penguin',last:'Run',banana:14,bala:2},
+            {first:'Don',last:'Slam',banana:13,bala:5},
+        ];
+
+
+        // const qualifiedMonkeys=monkeys.findIndex(
+        //     arr=>{
+        //         return arr.banana==23;
+        //     }
+        // );
+        //ans=2
+
+        // const qualifiedMonkeys=monkeys.map(
+        //     arr=> arr.banana).indexOf(23);
+        //與上面相同
+
+        // console.log(qualifiedMonkeys);
+
+        const qualifiedMonkeys=monkeys.filter(a=> a.banana>10&&a.bala>5);
+        console.log(qualifiedMonkeys);
+        const fullgame=qualifiedMonkeys.map(a=> `${a.first}${a.last}`);
+        console.log(fullgame);
+
+        const bananaOrder = monkeys.sort((a,b)=> {return b.bala-a.bala;});  //a-b由小到大 b-a由大到小
+        console.log(bananaOrder[0].first+bananaOrder[0].last);
+        document.write(bananaOrder);
+
+        const total= monkeys.reduce((a,b)=>{
+            return a+(b.bala+b.banana);
+            console.log(a);
+        },0);  //加上"起始值"
+        console.log(total);
+
+        // arr.reduce(function (accumulator, currentValue, currentIndex, array) {});
+        // accumulator：累加器
+        // currentValue：當前元素
+        // currentIndex：當前元素的索引（選擇性）
+        // array: 呼叫 reduce() 方法的陣列（選擇性）
+
+        // const test=monkeys.map(a=> `${a.first}${a.last}`);
+        // console.log(test);
+        //可取指定行列 ==bananaOrder[0].first
+
+        // let data = [1, 2, 3, 4, 5];
+        // data.forEach((value, index, array)=>
+        //     {array[index] = value + 1
+        //     document.write(array[index]);}
+        // );
+        // console.log(data); 
+        // ans=[2, 3, 4, 5, 6]
+
+
+    </script>
+
+</body>
+
+</html>

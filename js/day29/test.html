@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        html {
+            box-sizing: border-box;
+            font-size: 10px;
+            background: #8E24AA;
+            background: linear-gradient(45deg, #42a5f5 0%, #478ed1 50%, #0d47a1 100%);
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            text-align: center;
+            font-family: 'Inconsolata', monospace;
+        }
+
+        .display__time-left {
+            font-weight: 100;
+            font-size: 20rem;
+            margin: 0;
+            color: white;
+            text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .timer {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .timer__controls {
+            display: flex;
+        }
+
+        .timer__controls>* {
+            flex: 1;
+        }
+
+        .timer__controls form {
+            flex: 1;
+            display: flex;
+        }
+
+        .timer__controls input {
+            flex: 1;
+            border: 0;
+            padding: 2rem;
+        }
+
+        .timer__button {
+            background: none;
+            border: 0;
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            font-family: 'Inconsolata', monospace;
+        }
+
+        .timer__button:hover,
+        .timer__button:focus {
+            background: rgba(0, 0, 0, 0.2);
+            outline: 0;
+        }
+
+        .display {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .display__end-time {
+            font-size: 4rem;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="timer">
+        <div class="timer__controls">
+            <button data-time="20" class="timer__button">20 Secs</button>
+            <button data-time="300" class="timer__button">Work 5</button>
+            <button data-time="900" class="timer__button">Quick 15</button>
+            <button data-time="1200" class="timer__button">Snack 20</button>
+            <button data-time="3600" class="timer__button">Lunch Break</button>
+            <form name="customForm" id="custom">
+                <input type="text" name="minutes" placeholder="Enter Minutes">
+            </form>
+        </div>
+        <div class="display">
+            <h1 class="display__time-left"></h1>
+            <p class="display__end-time"></p>
+        </div>
+    </div>
+
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+    <script>
+        let time = 0;
+        let timerFlag = false;
+
+        $('.timer__button').click(timeSet);
+        $('#custom').submit(e => {
+            e.preventDefault();
+            //submit會重整 需擋掉
+            time = e.target.minutes.value * 60;
+            e.target.reset();
+            timeStart();
+        });
+
+        function timeSet(e) {
+            time = parseInt(e.target.dataset.time);
+            timeStart();
+        };
+
+        function timeStart() {
+            if (timerFlag) clearInterval(timeout);
+            getEndTime();
+            timerHandler();
+            timeout = setInterval(timerHandler, 1000);
+        }
+
+        function timerHandler() {
+            timerFlag = true;
+            $('.display__time-left').text(`倒數計時${time}`);
+            if (time == 0) {
+                clearInterval(timeout);
+                timerFlag = false;
+                $('.display__time-left').text("倒數結束");
+            };
+            time -= 1;
+        }
+
+        function getEndTime() {
+            const EndTime = Date.now() + time * 1000;
+            //Date.now()為目前所經過的的秒數加總
+            const getTime = new Date(EndTime);
+            //將加總後的秒數EndTime換成台北標準時間getTime
+
+            let h = getTime.getHours();
+            let m = getTime.getMinutes();
+            let s = getTime.getSeconds();
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+            $('.display__end-time').text(`結束時間為  ${h}:${m}:${s}`);
+        }
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

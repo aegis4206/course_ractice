@@ -1,0 +1,80 @@
+﻿@*@model _01Todo.Models.ToDo
+    helper使用上述*@
+@{
+    ViewBag.Title = "代辦事項新增";
+}
+
+<h2>代辦事項新增</h2>
+
+<form method="post" action="/Home/Create">
+    @*@using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()*@
+
+    <div class="form-horizontal">
+        @*<h4>ToDo</h4>*@
+        <hr />
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+        <div class="form-group">
+            <label for="Title">標題</label>
+            @*@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                <input id="Title" name="Title" type="text" required="required" value="@ViewBag.Title2" />
+                @*@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for=" Image">圖示</label>
+            @*@Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @*<input id="Image" name="Image" type="text" />*@
+                @{
+                    string a = "", b = "";
+                    string selected = "";
+                    if (ViewBag.Image == "0.png")
+                    {
+                        a = "selected";
+                    }
+                    if (ViewBag.Image == "1.png")
+                    {
+                        b = "selected";
+                    }
+
+                }
+                <select id="Image" name="Image">
+                    <option value="0.png" @a>重要</option>
+                    <option value="1.png" @b>普通</option>
+                </select>
+                @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Date">完成日</label>
+            @*@Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                <input id="Date" name="Date" type="date" / required="required" value="@ViewBag.Date">
+                @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="新增" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    @*}*@
+</form>
+<div>
+    <a href="/Home/Index">返回待辦事項列表</a>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

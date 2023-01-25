@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        h1{
+            color: red;
+        }
+        .a{
+           color: rgb(30, 175, 11); 
+           background-color: rgb(30, 175, 11);
+        }
+        .b{
+            background-color:rgb(255, 0, 0) ;
+           color: rgb(255, 0, 0); 
+        }
+    </style>
+</head>
+
+<body>
+    <h1>歡迎光臨我的網站</h1>
+        <p>歡迎光臨我的網站</p>
+            <b>歡迎光臨我的網站</b>
+    <b><p>歡迎光臨我的網站</p></b>
+
+    <select name="test" id="List" value="c" class="c">
+        <option value="a">1</option>
+        <option value="b">2</option>
+    </select>
+    <b>歡迎光臨我的網站</b>
+    <script src="jquery-3.6.1.js"></script>
+    <script>
+        $('h1').css({
+            'color':'yellow'
+        });
+ 
+        $('#List').attr('value','d');
+        console.log( $('#List').val());
+        console.log($('#List').selector);
+
+        $('#List').change(function(){
+            $('#List>b').attr('class',$('#List').val());
+            console.log($('#List').val());
+            console.log($('#List[option*="b"]').val);
+        });
+
+        // 追加相對應屬性
+    </script>
+</body>
+
+</html>

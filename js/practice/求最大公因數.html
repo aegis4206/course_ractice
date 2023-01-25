@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        input,button,p{
+            height: 80px;
+            font-size: 40px;
+        }
+    </style>
+    
+
+</head>
+
+<body>
+    <div>
+        <input type="text" placeholder="請輸入轉換數字" id="valueX">
+        <input type="text" placeholder="請輸入轉換數字" id="valueY">
+        </select>
+        <button id="btn">轉換</button>
+        <p id="ans"></p>
+        <h2><a href="../../index.html">請按此返回首頁</a></h2>
+    </div>
+<script>
+    let btn = document.getElementById('btn');
+    let valueX = document.getElementById('valueX');
+    let valueY = document.getElementById('valueY');
+    let ans = document.getElementById('ans');
+    btn.addEventListener('click',getAns);
+    function getAns(){
+        if(valueX.value<=0||isNaN(valueX.value)||valueY.value<=0||isNaN(valueY.value)){
+            ans.innerText='請輸入不為0的數字';
+        }
+        else{
+           
+            ans.innerText="答案為"+getGCD(parseInt(valueX.value),parseInt(valueY.value));
+               
+        }
+        };
+   
+
+
+    function getGCD(a,b){
+        let c = 0;
+        if (b > a) {
+            c = a;
+            a = b;
+            b = c;
+        }
+        if (a % b == 0) {
+
+            return b;
+        }
+        else {
+            while (a !=0 && b != 0) {
+                if(a>b){
+                    a=a%b;
+                }
+                else if (b>a){
+                    b=b%a;
+                }
+            }
+            if (a==0){
+                return b;
+            }
+            else {
+                return a;
+            }
+
+        }
+    }
+    
+    
+    
+
+</script>
+</body>
+
+</html>

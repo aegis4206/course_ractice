@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        html {
+            box-sizing: border-box;
+            font-size: 10px;
+            background: #ffc600;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Amatic SC', cursive;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 10rem;
+            line-height: 1;
+            margin-bottom: 0;
+        }
+
+        .score {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0 3rem;
+            line-height: 1;
+            border-radius: 1rem;
+        }
+
+        .game {
+            width: 600px;
+            height: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        }
+
+        .hole {
+            flex: 1 0 33.33%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hole:after {
+            display: block;
+            background: url(dirt.svg) bottom center no-repeat;
+            background-size: contain;
+            content: '';
+            width: 100%;
+            height: 70px;
+            position: absolute;
+            z-index: 2;
+            bottom: -30px;
+        }
+
+        .mole {
+            background: url('mole.svg') bottom center no-repeat;
+            background-size: 60%;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            height: 100%;
+            /* transition: all 0.4s; */
+        }
+
+        .hole.up .mole {
+            top: 0px;
+        }
+        .button>button{
+            height: 100px;
+            width: 100px;
+            font-size: 20px;            
+        }
+        .button{
+            text-align: center;
+            margin-bottom: 100px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <h1>打地鼠遊戲 <span class="score">0</span></h1>
+    <div class="button"><button onClick="startGame()" >Start!</button></div>
+    <!-- <input type="text" id="gameTime" placeholder="設定遊戲時間秒數" style="height: 100px; width: 200px; font-size: 20px;">
+    <input type="text" id="speed" placeholder="設定地鼠出現速度" style="height: 100px; width: 200px; font-size: 20px;"> -->
+    <div class="game">
+        <div class="hole hole1">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole2">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole3">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole4">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole5">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole6">
+            <div class="mole"></div>
+        </div>
+    </div>
+
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+
+    <script>
+        $(function() {    
+        FastClick.attach(document.body);    
+        });  
+        //
+        let score = 0;
+        let gameFlag = false;
+
+        const gameTime = 10;
+        //設定遊戲時間
+        const speed = 500;
+        //設定地鼠出來進去速度
+
+        $('.hole').click(getScore);
+        
+
+        function getScore(e) {
+            if(gameFlag&& $(e.currentTarget).hasClass('sc')){
+                $(e.currentTarget).removeClass('sc');
+                score += 1;
+            };
+            $('.score').text(score);
+            
+        };
+
+        function startGame() {
+            if(gameFlag) return;
+            score = 0;
+            $('.score').text(score);
+            gameFlag = true;
+            random();
+            timer();
+            console.log('gamestart');
+        };
+
+        function timer() {
+            let endTime = gameTime;
+            let timer = setInterval(() => {
+                endTime -= 1;
+                console.log(endTime);
+                if (endTime == 0) {
+                    gameFlag = false;
+                    console.log('gameover');
+                    clearInterval(timer);
+                }
+            }, 1000);
+        };
+        function random() {
+            
+                let randTimer = setInterval(() => { 
+                    let num = Math.floor(Math.random()*6)+1;
+                    if($(`.hole${num}`).hasClass('sc')) {
+                        clearInterval(randTimer);
+                        return random()
+                    };
+                    $(`.hole${num}`).addClass('sc');
+                    $(`.hole${num}>.mole`).animate({top:0},speed);
+                    //animate修改動畫速度
+                    setTimeout(()=>{
+                        $(`.hole${num}>.mole`).animate({top:'100%'},speed,()=>$(`.hole${num}`).removeClass('sc'));
+                    },speed)
+                    if (!gameFlag) {
+                        clearInterval(randTimer);
+                        alert(`遊戲結束 總得分為${score}`);
+                    };
+                }, speed);          
+        }
+
+        // let score = 0;
+        // let gameFlag = false;
+
+        // const gameTime = 10;
+        // //設定遊戲時間
+        // const speed = 500;
+        // //設定地鼠出來進去速度
+
+        // $('.mole').click(getScore);
+        
+
+        // function getScore() {
+        //     if(gameFlag)score += 1;
+        //     $('.score').text(score);
+        // };
+
+        // function startGame() {
+        //     score = 0;
+        //     $('.score').text(score);
+        //     gameFlag = true;
+        //     random();
+        //     timer();
+        //     console.log('gamestart');
+        // };
+
+        // function timer() {
+        //     let endTime = gameTime;
+        //     let timer = setInterval(() => {
+        //         endTime -= 1;
+        //         console.log(endTime);
+        //         if (endTime == 0) {
+        //             gameFlag = false;
+        //             console.log('gameover');
+        //             clearInterval(timer);
+        //         }
+        //     }, 1000);
+        // };
+        // function random() {
+        //         let randTimer = setInterval(() => {
+        //             let num = Math.floor(Math.random()*6)+1;
+        //             // $(`.hole${num}`).addClass('up');
+        //             $(`.hole${num}>.mole`).animate({top:0},speed);
+        //             //animate修改動畫速度
+        //             setTimeout(()=>{
+        //                 // $(`.hole${num}`).removeClass('up');
+        //                 $(`.hole${num}>.mole`).animate({top:'100%'},speed);
+        //                 console.log('out');
+        //             },speed)
+        //             if (!gameFlag) {
+        //                 clearInterval(randTimer);
+        //                 setTimeout(()=>$('.score').text(`遊戲結束 總得分為${score}`),speed+500)
+        //             };
+        //         }, speed);          
+        // }
+
+
+        
+    </script>
+
+
+</body>
+
+</html>

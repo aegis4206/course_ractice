@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        .line{
+            border: 1px solid;
+            cursor: pointer;
+        }
+        .large{
+            font-size: 2em;
+        }
+        .default{
+            font-size: 1 rem;
+        }
+        .small{
+            font-size: 0.5em;
+        }
+        .selected{
+            border: 3px double solid;
+            background-color: aquamarine;
+        }
+        .hide{
+            display: none;
+        }
+        .show{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 id="h2">顯示功能按鈕</h2>
+    <div id="swither">
+        <span id="small">縮小</span>
+        <span id="default">標準</span>
+        <span id="large">放大</span>
+    </div>
+    <P>Hello jQuery!!</P>
+
+    <script src="jquery-3.6.1.js"></script>
+
+    <script>
+        $('#swither>span').addClass('line');
+        $('#swither').addClass('hide');
+
+
+        $('#swither').click(function(evt){
+            
+            if(evt.target.id!="swither"){
+                $('p').removeClass().addClass(evt.target.id);
+                $('#swither span').removeClass('selected');
+            
+                $(evt.target).addClass('selected');
+            }
+            
+        });
+
+        // $('#h2').click(function(){
+        //     if($('#swither').is(':hidden')){  
+        //         $('#swither').removeClass('hide').addClass('show');
+        //         $(this).text('隱藏功能按鈕');
+        //     }
+        //     else{
+        //         $('#swither').removeClass('show').addClass('hide');
+        //         $(this).text('顯示功能按鈕');
+        //     }
+                
+        // });
+        ///////////相反專用寫法上面等於下面
+        
+        var flag=true;
+        $('#h2').click(function(){
+            // console.log($(this).text());   也可以用$(this).text()去判斷
+            $('#swither').toggle();
+        a=flag?'隱藏功能按鈕' :'顯示功能按鈕';
+        $(this).text(a);
+        flag=!flag;
+        });
+
+    </script>
+
+</body>
+
+</html>

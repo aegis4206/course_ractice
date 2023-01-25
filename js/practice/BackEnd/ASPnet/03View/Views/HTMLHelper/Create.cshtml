@@ -1,0 +1,54 @@
+﻿@model _03View.Models.Member
+
+@{
+    ViewBag.Title = "會員註冊";
+}
+
+<h2>會員註冊</h2>
+
+@using (Html.BeginForm("Create","HTMLHelper",FormMethod.Post,new {id="form1" }))
+{
+    <p>
+        帳號:@Html.TextBoxFor(model => model.UserId)
+    </p>
+    <p>
+        密碼:@Html.PasswordFor(model => model.Pwd)
+    </p>
+    <p>
+        姓名:@Html.TextBoxFor(model => model.Name)
+    </p>
+    <p>
+        信箱:@Html.TextBoxFor(model => model.Email, new { type = "email" })
+        @*new {type="email"}新增前端屬性*@
+    </p>
+    <p>
+        生日:@Html.TextBoxFor(model => model.Birthday)
+    </p>
+    <p>
+        <img id="code" src="@Url.Action("getCode")"/><span class="glyphicon glyphicon-refresh" style="cursor:pointer" onclick="form1.code.src = '/HTMLHelper/getCode?' + Math.random()">refresh</span>
+        <br />驗證碼:<input id="ValidationCode" name="ValidationCode" type="text" maxlength="6" class="form-control"/>
+    </p>
+    <p>
+        <input type="submit" value="送出"/>
+    </p>
+    <p>
+        @Html.Raw(ViewBag.Msg)
+    </p>
+}
+
+@*<h2>成績判斷</h2>
+
+@helper ScoreCheck(int math,int eng ,int chi) { 
+int avg = (math + eng + chi) / 3;
+    if (avg >= 60)
+    {
+        @:及格
+    }
+    else
+    {
+        @:不及格
+    }
+    }
+
+<h2>@ScoreCheck(70,50,60)</h2>*@
+

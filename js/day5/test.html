@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        
+        .panel1{
+            background-color: red;
+        }
+        .panel2{
+            background-color: yellow;
+        }
+        .panel3{
+            background-color: green;
+        }
+        .panel4{
+            background-color: blue;
+        }
+        .panels{
+            min-height: 100vh;
+            /* flex:1; */
+            overflow: hidden;
+            display: flex;
+        }
+        .panel{
+            text-align: center;
+            
+            flex:1;
+            justify-content: center;
+            align-items: center;
+
+            display: flex;
+            flex-direction: column; /*垂直排列*/
+            /* border: 1px solid; */
+            transition:
+            font-size 1.5s ,
+            flex 1.5s ,
+            background 0s;
+        }
+        .panel > * {
+            /* margin: auto; */
+            margin:0;
+            flex: 1;
+            justify-content: center; /*水平置中*/
+            align-items: center; /*垂直置中*/
+            display: flex;
+            border: 1px solid;
+            transition:transform 1s;
+        }
+
+        
+        
+        .panel>*:first-child{
+            transform: translateY(-100%);
+        }
+        .panel.open-active>*:first-child{
+            transform: translateY(0%);
+        }
+        .panel>*:last-child{
+            transform: translateY(100%);
+        }
+        .panel.open-active>*:last-child{
+            transform: translateY(0%);
+        }
+        .panel p:nth-child(2) {
+            font-size: 4em;
+        }
+        .panel.open{
+            font-size: 4em;
+            flex: 5;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="panels" id="p">
+        <div class="panel panel1">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+        </div>
+        <div class="panel panel2">
+            <p>4</p>
+            <p>5</p>
+            <p>6</p>
+        </div>
+        <div class="panel panel3">
+            <p>7</p>
+            <p>8</p>
+            <p>9</p>
+        </div>
+        <div class="panel panel4">
+            <p>10</p>
+            <p>11</p>
+            <p>12</p>
+        </div>
+    </div>
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+
+    <script>
+    //    const panels= document.querySelectorAll('.panel');
+
+    //     panels.forEach(panel => 
+    //     panel.addEventListener('transitionend', toggleActive));   
+    //     function toggleActive(){
+    //     this.classList.toggle('open');
+
+    //    }
+       
+       $('.panel').click(toOpen);
+        function toOpen(){
+        this.classList.toggle('open-active');
+        this.classList.toggle('open');
+       };
+
+
+    </script>
+
+</body>
+
+</html>

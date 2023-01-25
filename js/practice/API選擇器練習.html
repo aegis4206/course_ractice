@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        #product{
+            width: 1200px;
+            margin: auto;
+        }
+        #product>div{
+            width: 280px;
+            float: left;
+            height: 500px;
+            /* border: 1px solid; */
+            overflow: hidden ;
+            margin: 5px;
+            box-shadow: 5px 5px 3px black;
+            text-align: center;
+            cursor: pointer;
+
+        }
+        #product>div>h2{
+            text-align: left;
+            height: 100px;
+        }
+        #product>div>h3{
+            height: 80px;
+        }
+        #product>div>h4{
+            height: 50px;
+        }
+        #product>div>div{
+            border: 5px solid #808080;
+            background-color: #ff6a00;
+            color: white;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .hover{
+            border: 5px dotted red;
+            background-color: antiquewhite;
+        }
+        .down{
+            border: 10px double green;
+            background-color: bisque;
+        }
+
+        /* #product>div>p{
+            overflow: auto;
+            height: 300px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="product">
+
+    </div>
+
+    </table>
+
+
+    <script src="jquery-3.6.1.js"></script>
+
+    <script>
+            $.ajax({
+                type:'get',
+                url:"https://www.googleapis.com/books/v1/volumes?q=asp",
+                success: function (data){
+                    
+                    for (i = 0; i < data.items.length; i++) {
+                        let d= data.items[i];
+                        let form="<div id='book" + (i + 1) + "'>";
+                        form +="<img src='" +d.volumeInfo.imageLinks.smallThumbnail+ "'/>";
+                        form +="<h2>" + d.volumeInfo.title + "</h2>";
+                        // form +="<p>" + d.volumeInfo.description + "</p>";
+                        form +="<h3>" + d.volumeInfo.authors + "</h3>";
+                        form +="<h4>" + d.volumeInfo.publisher + "</h4>";
+                        form +="<div>加入購物車</div>";
+                        form +="</div>";
+
+                        $('#product').append(form);
+                    }
+                }, 
+                error:function(){
+                    alert("發生錯誤!!");
+                }
+            });
+        // $('#product').mouseover(function(evt){
+        //     $(evt.target).addClass('hover');
+        // });
+        // $('#product').mouseout(function(evt){
+        //     $(evt.target).removeClass('hover');
+        // });
+            $('#product').mouseover(function(evt){
+                if(evt.target.id.substr(0,4)!="book"){
+                    $(evt.target).parent().addClass('hover');
+                }
+                else{
+                    $(evt.target).addClass('hover');
+                }
+            });
+
+            $('#product').mouseout(function(evt){
+                if(evt.target.id.substr(0,4)!="book"){
+                    $(evt.target).parent().removeClass('hover');
+                }
+                else{
+                    $(evt.target).removeClass('hover');
+                }
+            });
+            $('#product').mousedown(function(evt){
+                if(evt.target.id.substr(0,4)!="book"){
+                    $(evt.target).parent().removeClass('hover').addClass('down');
+                }
+                else{
+                    $(evt.target).removeClass('hover').addClass('down');
+                }
+            });
+            $('#product').mouseup(function(evt){
+                console.log($(evt.target.children[4]));
+                console.log(evt.target.id);
+                if(evt.target.id.substr(0,4)!="book"){
+                    $(evt.target.parentElement.children[4]).hide(3000); }   //children[數字] 0開始往下署第幾個節點
+                else{
+                    $(evt.target.children[4]).hide(3000);
+                }
+                // if(evt.target.id.substr(0,4)!="book"){
+                //     $(evt.target).parent().hide(3000);
+                
+                    
+                // }
+                // else{
+                //     $(evt.target).hide(3000);
+                // }
+            });
+        
+    </script>
+
+</body>
+
+</html>

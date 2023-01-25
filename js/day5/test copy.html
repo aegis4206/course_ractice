@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+    
+    .panels {
+      min-height:100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .panel {
+      text-align: center;
+      
+      background-position:center;
+      flex: 1;
+      justify-content:center;
+      align-items:center;
+      display:flex;
+      flex-direction:column;
+    }
+
+
+    .panel1 { background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500); }
+    .panel2 { background-image:url(https://source.unsplash.com/rFKUFzjPYiQ/1500x1500); }
+    .panel3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
+    .panel4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
+    .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
+
+    .panel > * {
+      margin:0;
+      flex:1 0 auto;
+      justify-content:center;
+      align-items:center;
+      display:flex;
+    }
+
+    .panel > *:first-child {transform:translateY(-100%);}
+    .panel.open-active > *:first-child {transform:translateY(0);}
+    .panel > *:last-child {transform:translateY(100%);}
+    .panel.open-active > *:last-child {transform:translateY(0);}
+
+  
+    .panel p:nth-child(2) {
+      font-size: 4em;
+    }
+
+    .panel.open {
+      font-size:40px;
+      flex:5;
+    }
+        
+
+    </style>
+</head>
+
+<body>
+    <div class="panels">
+        <div class="panel panel1">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+        </div>
+        <div class="panel panel2">
+            <p>4</p>
+            <p>5</p>
+            <p>6</p>
+        </div>
+        <div class="panel panel3">
+            <p>7</p>
+            <p>8</p>
+            <p>9</p>
+        </div>
+        <div class="panel panel4">
+            <p>10</p>
+            <p>11</p>
+            <p>12</p>
+        </div>
+    </div>
+
+    <script src="jquery-3.6.1.js"></script>
+
+    <script>
+       
+    </script>
+
+</body>
+
+</html>

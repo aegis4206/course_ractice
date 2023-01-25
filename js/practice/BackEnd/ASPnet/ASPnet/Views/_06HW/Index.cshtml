@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>身份證字號合法性驗證</title>
+    <style>
+        .container{
+            width:1000px;
+            margin:auto;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container" > 
+        <form action="@Url.Action("Index")" method="Post">
+            <input name="id" type="text" />
+            <input id="Submit1" type="submit" value="送出" />
+
+            @*name為後端指定*@
+
+
+        </form>
+        @{ 
+            <h2>@ViewBag.Result</h2>
+        }
+                        
+    </div>
+</body>
+</html>

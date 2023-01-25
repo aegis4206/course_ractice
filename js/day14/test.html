@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+    <script>
+        let age = 100;
+        let age2 = age;
+        console.log(age, age2);
+        age = 200;
+        console.log(age, age2);
+        //無論型別是integer, String及boolen都是copy。
+
+        const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+        const team = players
+        console.log(players, team);//一樣
+        team[3] = 'Lux';
+        console.log(players, team);//一樣
+        //對陣列及物件來說，都是Reference
+
+        ['a', 'b', 'c', 'd'].slice(1, 3); //['b', 'c']
+        //slice(begin, end):
+        x = ['a', 'b', 'c', 'd'];
+        xx = ['a', 'b', 'c', 'd'];
+        y = x.splice(1, 3);
+        z = xx.slice(0, xx.length);
+        xx[0] = 'e';
+        //splice(index, howmany, additem):
+        console.log(x);//['a']
+        console.log(y);//['b', 'c', 'd']
+        console.log(z);//['a', 'b', 'c', 'd']
+        console.log(xx);//['e', 'b', 'c', 'd']
+
+        const bar = ["b", "a", "r"];
+        Array.from(bar);
+        // ["b", "a", "r"]
+
+        Array.from('foo')
+        //['f', 'o', 'o'];
+
+        const team2 = players.slice();
+        const team3 = [].concat(players);
+        const team4 = [...players];
+        const team5 = Array.from(players);
+
+        const obj1 = {
+            name: 'Wes',
+            age: 100,
+            social: {
+                twitter: '@wesbos',
+                facebook: 'wesbos.developer'
+            }
+        };
+        obj2 = Object.assign({}, obj1, { age: 12 }); //one level copy
+        obj3 = JSON.parse(JSON.stringify(obj1)); //full copy
+        obj4 = obj1;
+        obj1.social.twitter = 'white';
+
+        console.log(obj1);
+        console.log(obj2);//age=12  twitter='white'
+        console.log(obj3);//最初的物件
+        console.log(obj4);
+
+        // 超新星樂團 - 吉木蛙鵝
+        let superTeam = ['Otree', 'Penguin', 'Frog', 'Jim'];
+        // 成立山寨樂團 - 吉姆挖耳
+        let fakeTeam = superTeam;
+        // 兩個變數值相同
+        console.log(fakeTeam, superTeam)
+        // 山寨樂團團員財務糾紛 -> 緊急人事異動 -> <吉姆挖坑> 重新出道
+        fakeTeam[3] = 'Chris';
+        // 超新星樂團竟然也跟著變了!?
+        console.log(fakeTeam, superTeam);
+        
+    </script>
+
+
+</body>
+
+</html>

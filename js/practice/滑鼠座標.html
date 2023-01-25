@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+
+
+    </style>
+
+
+</head>
+
+<body>
+    <!-- <div id="container">
+        <header>
+            header
+        </header>
+        <aside>
+            aside
+        </aside>
+        <article>
+            article
+        </article>
+        <footer>
+            footer
+        </footer>
+    </div> -->
+    X:<input id="x" type="text">Y:<input id="y" type="text">
+    X:<input id="x1" type="text">Y:<input id="y1" type="text">
+
+    <script>
+        var x = document.getElementById("x");
+        var y = document.getElementById("y");
+        var x1 = document.getElementById("x1");
+        var y1 = document.getElementById("y1");
+
+        document.onmousemove = function mousemove(event) {  //onclick
+
+            x.value = event.pageX;
+            y.value = event.pageY;
+        }
+        
+        document.addEventListener("click",mouseclick);
+
+        function mouseclick(event) {  //onmousemove
+
+            x1.value = event.pageX;
+            y1.value = event.pageY;
+        }
+
+
+    </script>
+</body>
+
+</html>

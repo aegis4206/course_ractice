@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        .inbox{
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 5px;
+            border: 1px solid;
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+        }
+        .item{
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #F1F1F1;
+            /* 下底線 */
+        }
+        .item:last-child{
+            border-bottom: 0;
+        }
+        input:checked + p {
+            background-color: #F9F9F9;
+            text-decoration: line-through;
+        }
+        input[type="checked"]{
+            margin: 200px;
+        }
+        p{
+            margin: 0;
+            padding: 20px;
+            flex:1;
+            font-size: 20px;
+            font-weight: 200;
+            border-left: 1px solid #D1E2FF;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="inbox">
+        <div class="item">
+            <input type="checkbox">
+            <p>1111111111111111111111111111111</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>2222222222222222222222222222222</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>3333333333333333333333333333333</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>4444444444444444444444444444444</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>5555555555555555555555555555555</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>6666666666666666666666666666666</p>
+        </div>
+    </div>
+    <script src="../practice/jquery-3.6.1.js"></script>
+
+    <script>
+        const arr = $('input').toArray();
+        let firstClick = null;
+        $(arr).click(e => {
+            if (e.target.checked) {
+                if (e.shiftKey && firstClick != null) {
+                    let nowClick = arr.indexOf(e.target);
+                    arr.slice(
+                        Math.min(firstClick,nowClick),
+                        Math.max(firstClick,nowClick)
+                    ).forEach(ck=>ck.checked=true);
+                }
+            }
+            firstClick = arr.indexOf(e.target);
+        });
+
+        
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        .progress{
+            width: 640px;
+            height: 5px;
+            background-color: grey;
+
+        }
+        .nowProgress{
+            width: 0%;
+            background-color: green;
+        }
+        body{
+            display: flex;
+            background-color: #7a4198;
+            background: linear-gradient(135deg, #7c1599 0%,#921099 48%,#7e4ae8 100%);
+            align-items: center;
+            justify-content: center;
+            min-height:100vh;
+        }
+        .player{
+            max-width: 750px;
+            border: 5px solid rgba(0, 0, 0, 2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 2);
+            position: relative;
+            overflow: hidden;
+            /*隱藏下浮*/
+        }
+        button{
+            background: none;
+            border: 0;
+            padding-top: 10px;
+            /* line-height: 1; */
+            color: white;
+            text-align: center;
+            /* outline: 0; */
+            /* padding: 0; */
+            cursor: pointer;
+        }
+        .control{
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            flex-wrap:wrap;
+            /*多行*/
+            transform: translateY(100%) translateY(-5px);
+            /*translateY(100%) 絕對位置*/
+            transition: 0.5s;
+
+        }
+        .player:hover .control {
+            transform: translateY(-10px);
+            /*hove觸發時向上移動*/
+        }
+        .player:hover .progress {
+            height: 20px;
+            transition: 0.5s;
+        }
+        .control>*{
+            flex: 1;
+        }
+        .progress{
+            flex:10;
+            position: relative;
+            display: flex;
+            flex-basis: 100%;
+            cursor: ew-resize;
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            background:transparent;
+            /* 背景透明 */
+            width: 100%;
+            margin: 0 5px;
+            padding-top: 10px;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8.4px;
+            cursor: pointer;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0 0 1px rgba(13, 13, 13, 0);
+            background: rgba(255,255,255,0.8);
+            border-radius: 1.3px;
+            border: 0.2px solid rgba(1, 1, 1, 0);
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 15px;
+            width: 15px;
+            border-radius: 50px;
+            background: #ffc600;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -3.5px;
+            box-shadow:0 0 2px rgba(0,0,0,0.2);
+        }
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #bada55;
+        }
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 8.4px;
+            cursor: pointer;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0 0 1px rgba(13, 13, 13, 0);
+            background: #ffffff;
+            border-radius: 1.3px;
+            border: 0.2px solid rgba(1, 1, 1, 0);
+        }
+        input[type=range]::-moz-range-thumb {
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(13, 13, 13, 0);
+            height: 15px;
+            width: 15px;
+            border-radius: 50px;
+            background: #ffc600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player">
+        <video class="video" id="video" src="https://player.vimeo.com/external/194837908.sd.mp4?s=c350076905b78c67f74d7ee39fdb4fef01d12420&profile_id=164"></video>
+        <div class="control">
+            <div class="progress">
+                <div class="nowProgress"></div>
+            </div>
+            <button class="playToggle">►</button>
+            <input type="range" data-key="volume" class="volume" min="0" max="1" step="0.1" value="100">
+            <input type="range" data-key="playbackRate" class="speed" min="0.1" step="0.1" max="10" value="1" >
+            <button data-key="-10" class="skip">« 10s</button>
+            <button data-key="10" class="skip">10s »</button>
+        </div>
+    </div>
+
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+
+    <script>
+    let video=document.getElementById('video');
+    $('.video,.playToggle').click(e=>{
+        video[video.paused? 'play':'pause']();
+        //方法使用方式   1. 物件.方法  2.  物件['方法'] 第二種方法可為變數
+        $('.playToggle').text(video.paused? '►':'❚ ❚');
+        //按鈕更新
+    });
+    $('.skip').click(e=> {
+        video.currentTime+=parseInt(e.target.dataset.key);
+    });
+    $('.volume,.speed').click(e=> video[e.target.dataset.key]=e.target.value);
+    video.addEventListener('timeupdate', Progress);
+        function Progress() {
+            const percent = (video.currentTime) / (video.duration) * 100;
+            $('.nowProgress').css('width',`${percent}%`);
+        }
+    
+    let progressFlag=false;
+    $('.progress').mouseup(e=> progressFlag=false).mousedown(e=> progressFlag=true).click(progressUpdate).mousemove(e=>progressFlag&&progressUpdate(e));
+    function progressUpdate(e){
+            video.currentTime=(e.offsetX/640)*video.duration;
+    }
+
+
+    </script>
+
+
+</body>
+
+</html>

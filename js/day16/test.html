@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 100px;
+            opacity: 0.8;
+            text-shadow: 
+            10px 10px 0px rgba(255, 0, 0, 0.8),
+            -10px -10px 0px rgba(0, 255, 0, 0.5),
+            -10px 10px 0px rgba(0, 0, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h1 contenteditable>🔥Hello World!!(可編輯)</h1>
+    </div>
+
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+    <script>
+        $('.hero').mousemove(e => {
+            let { offsetX: percentX, offsetY: percentY } = e;
+            // ES6寫法解構後如下
+            // let percentX = e.offsetX;
+            // let percentY = e.offsetY;
+            if (e.target != e.currentTarget) {
+                percentX = e.offsetX + e.target.offsetLeft;
+                percentY = e.offsetY + e.target.offsetTop;
+            };
+            percentX = (percentX / e.currentTarget.offsetWidth * 2 - 1);
+            percentY = (percentY / e.currentTarget.offsetHeight * 2 - 1);
+            $('h1').css({
+                "text-shadow": `
+                ${percentX * 200}px ${-percentY * 200}px 0px rgba(255, 0, 0, 0.8),
+                ${-percentX * 300}px ${percentY * 300}px 0px rgba(0, 255, 0, 0.5),
+                ${percentX * 400}px ${-percentY * 400}px 0px rgba(0, 0, 255, 0.3)
+            `});
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>

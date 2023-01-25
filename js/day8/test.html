@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title></title>
+    <style>
+        #draw {
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="draw" width="400" height="320"></canvas>
+
+    <script src="../practice/jquery-3.6.1.js"></script>
+
+    <script>
+        const canvas = document.getElementById('draw');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const ctx = canvas.getContext('2d');
+        let draw = false;
+        ctx.lineJoim = 'round';
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 100;
+        ctx.strokeStyle = 'red';
+        //繪畫顏色
+        let x = 0, y = 0;
+        let temp = 0;
+        let wTemp = 100;
+        let wFlag = true;
+
+
+
+        $('#draw').mousedown(e => {
+            draw = true;
+            [x, y] = [e.offsetX, e.offsetY];
+        });
+        $('#draw').mouseup(e => draw = false);
+        $('#draw').mousemove(e => {
+            if (draw) {
+                ctx.beginPath();
+                //繪畫開始
+                ctx.moveTo(x, y);
+                //繪畫起始點
+                ctx.lineTo(e.offsetX, e.offsetY);
+                //繪畫終點
+                ctx.stroke();
+                //點到點連線
+                [x, y] = [e.offsetX, e.offsetY];
+
+                ctx.strokeStyle = `hsl(${temp},100%,50%)`;
+                // hsl(色階0~360,灰階%,明暗%)
+                temp++;
+                temp = temp > 360 ? 0 : temp;
+
+                ctx.lineWidth = wTemp;
+                if (wTemp > 100 || wTemp <= 0) {
+                    wFlag = !wFlag;
+                }
+                if (wFlag)
+                    wTemp--;
+                else
+                    wTemp++;
+            }
+            console.log(wTemp);
+        });
+        $('#draw').mouseout(e => draw = false);
+
+    </script>
+
+
+</body>
+
+</html>

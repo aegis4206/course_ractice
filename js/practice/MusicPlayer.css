@@ -1,0 +1,95 @@
+@font-face {
+    font-family: myfont;
+    src: url('fonts/webdings.woff') format("woff"),
+    url('fonts/webdings.ttf') format("truetype"),
+    url('fonts/webdings.eot') format("embedded-opentype");
+}
+
+#ControlPanel{
+    width: 700px; 
+    /* 700px */
+    border: 3px double;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    background-color: rgb(25, 179, 158);
+}
+#ControlPanel>span {
+    cursor: pointer;      /* 滑鼠移動至該處有變為可點擊狀態 */
+    font-family: 'myfont';
+    font-size: 3rem;
+    border: 5px solid;
+    box-shadow: 5px 5px 10px black;
+    border-radius: 50%;   /* 圓形化 */
+}
+.lineThrough{
+    text-decoration: line-through;
+}
+.clicked{
+    opacity: 0.4;
+}
+#List{
+    width: 100%;
+    text-align: center;
+    background-color: cornflowerblue;
+    color: white;
+}
+#settime{
+    background-color: #c8c8c8;
+    height: 10px;
+}
+#progress{
+    background-color:orangered;
+    height: 10px; 
+    width: 0%;
+}
+#durChange{
+    width:80%;
+    -webkit-appearance: none;
+    outline:none ;
+    border: 1px solid;
+    height: 20px;
+}
+#durChange::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width:30px; height: 30px;
+    background-color:  #303030;
+    border: 2px groove white;
+    border-radius: 50%;
+    transition: 1s;
+}
+/* transition秒數變化成下方 */
+    #durChange::-webkit-slider-thumb:hover{
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    /* hover滑鼠移動到該處變化 */
+
+#book>div{
+    border: 1px solid;
+    width: 300px;
+    height: 400px;
+    overflow: auto;
+    float: left;
+    margin:auto;
+    cursor: copy;
+}
+#book{
+    margin: auto;
+    width: 604px;
+
+}
+#btnUpdateMusic{
+    clear: both; /* 清除左右float*/
+    width: 100%;
+    background-color:cornflowerblue;
+    font-size: 16px;
+    text-align: center;
+    border: 5px groove white;  /* groove 漂浮*/
+    color: white;
+    font-weight: 900;
+}
+.hidden{
+    display: none;
+}
