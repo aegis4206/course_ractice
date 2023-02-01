@@ -1,11 +1,11 @@
 
-const Item = ({id,note,date,time,deleteData}) => {
+const Item = ({ id, note, date, time, deleteData, sumbittingStatus }) => {
 
-    function removeHandler(){
-        
-        deleteData(function(prev){
-            
-            return prev.filter(i=>i.id !== id)
+    function removeHandler() {
+        sumbittingStatus.current = true
+        deleteData(function (prev) {
+
+            return prev.filter(i => i.id !== id)
         })
     }
 

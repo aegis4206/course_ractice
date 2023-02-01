@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { v4 } from 'uuid'
 
-const Edit = ({ add }) => {
+const Edit = ({ add, sumbittingStatus }) => {
 
     const [note, setNote] = useState("")
 
@@ -22,8 +22,9 @@ const Edit = ({ add }) => {
     }
 
     function addItem() {
+        sumbittingStatus.current = true
         add(function (prevData) {
-            return [ { id:v4(), note, date, time },...prevData]
+            return [{ id: v4(), note, date, time }, ...prevData]
         })
     }
 
