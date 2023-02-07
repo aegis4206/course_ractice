@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        class Person{
+            
+            constructor(name,age){
+                console.log(this);
+                this.name= name
+                this.age=age
+            }
+            speck(){
+                console.log(`我叫${this.name}，今年${this.age}歲`)
+            }
+        }
+        const p1 = new Person('tom',18)
+        const p2 = new Person('white',30)
+
+        class Student extends Person{
+            constructor(name,age,grade){
+                super(name,age)
+                //繼承需調用的變數super
+                this.grade=grade
+            }
+            speck(){
+                console.log(`我叫${this.name}，今年${this.age}歲，就讀${this.grade}`)
+            }
+        }
+        const s1 = new Student('小白',19,'高一')
+        const s2 = new Student('小黑',29,'高二')
+
+        console.log(s1)
+    </script>
+</body>
+</html>

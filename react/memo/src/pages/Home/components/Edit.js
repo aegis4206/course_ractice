@@ -1,21 +1,23 @@
 import { useState } from "react"
 import { v4 } from 'uuid'
 
-const Edit = ({ add, sumbittingStatus }) => {
 
-    const [note, setNote] = useState("")
+
+const Edit = ({ add, sumbittingStatus ,update }) => {
+
+    let [note, setNote] = useState('')
 
     function noteChange(e) {
         setNote(e.target.value)
     }
 
-    const [date, setDate] = useState("")
+    let [date, setDate] = useState('')
 
     function dateChange(e) {
         setDate(e.target.value)
     }
 
-    const [time, setTime] = useState("")
+    let [time, setTime] = useState('')
 
     function timeChange(e) {
         setTime(e.target.value)
@@ -23,13 +25,23 @@ const Edit = ({ add, sumbittingStatus }) => {
 
     function addItem() {
         sumbittingStatus.current = true
+        let Today = new Date();
+        let idv = v4()
+        date = date===''? `${Today.getFullYear()}-${(Today.getMonth()+ 1)}-${Today.getDate()}` : date;
+        time = time===''? `${Today.getHours()}:${Today.getMinutes()}` : time;
+        let currentData = {
+            'id': idv, 
+            'note':note,
+            "date": date, 
+            "time": time}
+        update(currentData).then(()=> sumbittingStatus.current = false)
         add(function (prevData) {
-            return [{ id: v4(), note, date, time }, ...prevData]
+            return [{ id: idv, note, date, time }, ...prevData].sort((a, b) => b.date.localeCompare(a.date) ||  b.time.localeCompare(a.time))
         })
     }
 
     return <div>
-        <h1>備忘綠</h1>
+        <h1>留言板</h1>
         <p>記事 : </p>
         <input type='text' value={note} onChange={noteChange}></input>
         <p>日期 : </p>

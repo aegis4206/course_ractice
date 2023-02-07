@@ -121,11 +121,24 @@
 
         // console.log(objProxy);
 
-        let digits = [1, 2, 3];
-        let temp = parseInt(digits.join('')) + 1;
-        let temp1 = Array.from(String(temp));
-        let temp2 = temp1.map(e=>{return parseInt(e)});
-        let temp3 = [...temp2];
+        // let digits = [1, 2, 3];
+        // let temp = parseInt(digits.join('')) + 1;
+        // let temp1 = Array.from(String(temp));
+        // let temp2 = temp1.map(e=>{return parseInt(e)});
+        // let temp3 = [...temp2];
+
+        // let temp = {'obj':{'a':1,'b':2}}
+        // let temp1 = {'obj1':{'c':3,'d':4}}
+        // console.log({...temp,...temp1})
+        //     let temp2 = [{'obj':{'a':1,'b':2},...temp1}]
+        //     console.log(JSON.stringify(temp2))
+        //     console.log(temp2)
+
+        //     temp2.map(e=> console.log(e))
+
+        let Today = new Date();
+        console.log("今天日期是 " + Today.getFullYear() + " 年 " + (Today.getMonth() + 1) + " 月 " + Today.getDate() + " 日")
+        console.log(Today.getUTCDate())
     </script>
 
 </body>

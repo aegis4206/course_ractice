@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            showData = (e)=>{
+                alert(this.in1.value)
+            }
+            state = {isHot:true}
+            change = ()=>{
+                this.setState({isHot:!this.state.isHot})
+            }
+            saveInput = (e)=>{
+                this.in1=e
+            }
+           
+            render() {
+                return (
+                    <div>
+                        <h2>今天天氣很{this.state.isHot? '炎熱':'涼爽'}</h2>
+                        {/*<input ref={e=>{this.in1=e;console.log('ref調用次數',e)}} type="text" placeholder="點擊鈕提示數據"/>&nbsp;*/}
+                        <input ref={this.saveInput} type="text" placeholder="點擊鈕提示數據"/>&nbsp;
+                        <button onClick={this.showData}>點我提是左側的數據</button>&nbsp;
+                        <button onClick={this.change}>切換天氣</button>
+                        </div>
+                )
+            }
+
+        }
+
+        ReactDOM.render(<Demo name='white' age='30' sex='18 '/>, document.getElementById('test'))
+
+    </script>
+
+</body>
+
+</html>

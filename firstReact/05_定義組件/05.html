@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        function Demo(){
+            return <h1>helloWord</h1>
+        }
+        ReactDOM.render(<Demo/>,document.getElementById('test'))
+        //函式組件retrun 前面需大寫
+    </script>
+   
+</body>
+</html>

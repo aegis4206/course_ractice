@@ -1,0 +1,92 @@
+import React from 'react'
+import { Menu, Form, Container, Message } from 'semantic-ui-react'
+import { useNavigate } from 'react-router-dom'
+// import 'firebase/compat/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import firebaseApp from '../utils/firebase';
+
+
+function Signin() {
+    const navigate = useNavigate();
+    const auth = getAuth(firebaseApp);
+    const [activeItem, setActiveItem] = React.useState('register');
+    //設定預設 register
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [errorMessage, setErrorMessage] = React.useState('');
+    const [isLoading,setIsLoading] = React.useState(false);
+
+    function onSubmit() {
+        setIsLoading(true);
+        if (activeItem == 'register') {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((e) => {
+                    console.log('this', this)
+                    console.log('e', e)
+                    navigate("/");
+                    setIsLoading(false);
+                }).catch(error => {
+                    switch (error.code) {
+                        case 'auth/email-already-in-use':
+                            setErrorMessage('信箱已存在');
+                            break;
+                        case 'auth/invalid-email':
+                            setErrorMessage('信箱格式不正確');
+                            break;
+                        case 'auth/weak-password':
+                            setErrorMessage('密碼強度不足');
+                            break;
+                        default:
+                    }
+                    setIsLoading(false);
+                })
+        }
+        else if (activeItem == 'signin') {
+            signInWithEmailAndPassword(auth, email, password)
+                .then((e) => {
+                    console.log('this', this)
+                    console.log('e', e)
+                    navigate("/");
+                    setIsLoading(false);
+                }).catch(error => {
+                    switch (error.code) {
+                        case 'auth/invalid-email':
+                            setErrorMessage('信箱格式不正確');
+                            break;
+                        case 'auth/user-not-found':
+                            setErrorMessage('信箱不存在');
+                            break;
+                        case 'auth/wrong-password':
+                            setErrorMessage('密碼錯誤');
+                            break;
+                        default:
+                    }
+                    setIsLoading(false);
+                })
+        }
+    }
+
+    return (
+        <Container>
+            <Menu widths='2'>
+                <Menu.Item active={activeItem == 'register'} onClick={() => {setErrorMessage('');setActiveItem('register')}}>註冊</Menu.Item>
+                <Menu.Item active={activeItem == 'signin'} onClick={() => {setErrorMessage('');setActiveItem('signin')}}>登入</Menu.Item>
+            </Menu>
+            <Form onSubmit={onSubmit}>
+                <Form.Input
+                    label="信箱" value={email} placeholder="請輸入信箱" onChange={(e) => setEmail(e.target.value)}
+                ></Form.Input>
+                <Form.Input
+                    label="密碼" value={password} placeholder="請輸入密碼" onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                ></Form.Input>
+                {errorMessage && <Message negative>{errorMessage}</Message>}
+                <Form.Button loading={isLoading}>
+                    {activeItem == 'register' && '註冊'}
+                    {activeItem == 'signin' && '登入'}
+                </Form.Button>
+            </Form>
+        </Container>
+    )
+}
+export default Signin;

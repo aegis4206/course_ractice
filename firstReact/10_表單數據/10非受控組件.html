@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component{
+            handleSubmit= (e)=>{
+                e.preventDefault(); //阻止form提交
+                const {username,password}=this
+                alert(`用戶名:${username.value}密碼:${password.value}`)
+            }
+            render(){
+                return (
+                    <form onSubmit={this.handleSubmit}>
+                        帳號:<input ref={e=>this.username=e} type="text" />
+                        密碼:<input ref={e=>this.password=e} type="password" />
+                        <button>登入</button>
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(<Demo/>,document.getElementById('root'))
+    </script>
+
+</body>
+
+</html>

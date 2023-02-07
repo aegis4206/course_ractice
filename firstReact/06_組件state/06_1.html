@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            
+
+            state = { isHot: true }
+
+
+            render() {
+                return <h1 onClick={this.change}>今天天氣{this.state.isHot ? '炎熱' : '涼爽'}</h1>
+            }
+            change = ()=> {
+            this.setState({isHot:!this.state.isHot})
+            console.log(this.state.isHot) 
+            //箭頭函式的this指向外層包覆的本身
+        }
+        }
+        
+        ReactDOM.render(<Demo />, document.getElementById('test'))
+
+    </script>
+
+</body>
+
+</html>

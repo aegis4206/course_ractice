@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            disappear = () => {
+                // clearInterval(this.timer);
+                ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+            }
+
+            state = { opacity: 1 }
+
+
+            componentDidMount() {
+                this.timer = setInterval(() => {
+                    let { opacity } = this.state
+                    opacity -= 0.1
+                    opacity = opacity <= 0 ? 1 : opacity;
+                    this.setState({ opacity })
+                }, 200)
+
+            }
+            //componentDidMount為畫面渲染後執行一次
+
+            componentWillUnmount() {
+                clearInterval(this.timer);
+            }
+            //componentWillUnmount為畫面要卸載渲染時執行一次
+
+
+
+            shouldComponentUpdate() {
+                return true
+            }
+            //shouldComponentUpdate控制setState的開關 必須返回boolean
+
+            componentWillUpdate() {
+
+            }
+            //setState將要更新前執行一次 非初始化
+
+            componentDidUpdate() {
+
+            }
+            //setState將要更新後執行一次 非初始化
+
+            //this.forceUpdate強制更新state
+
+            render() {
+                return (
+                    <div>
+                        <h1 style={{ 'opacity': this.state.opacity }}>閃爍</h1>
+                        <button onClick={this.disappear}>消除</button>
+                    </div>
+
+                )
+            }
+        }
+
+        class A extends React.Component {
+            state = { car: 'toyota' }
+            changeCar = () => {
+                this.setState({ car: 'hodaz' })
+            }
+            render() {
+                return (
+                    <div>
+                        <div>A {this.state.car}</div>
+                        <button onClick={this.changeCar}>換車</button>
+                        <B car={this.state.car} />
+                    </div>
+                )
+            }
+        }
+
+        class B extends React.Component {
+            componentWillReceiveProps() {
+
+            }
+            //componentWillReceiveProps為要接收傳值props更新時執行一次
+            render(props) {
+
+
+                return (
+                    <div>B 車收到的車是{this.props.car}</div>
+                )
+            }
+        }
+
+        ReactDOM.render(<A />, document.getElementById('root'))
+    </script>
+
+</body>
+
+</html>

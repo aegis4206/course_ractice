@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            showData = (e)=>{
+                console.log(e.target)
+                alert(this.refs.in1.value)
+            }
+            showData2 = (e)=>{
+                console.log(e.target)
+                alert(this.refs.in2.value)
+            }
+            render() {
+                return (
+                    <div>
+                        <input ref='in1' type="text" placeholder="點擊鈕提示數據"/>&nbsp;
+                        <button onClick={this.showData}>點我提是左側的數據</button>&nbsp;
+                        <input onBlur={this.showData2} ref='in2' type="text" placeholder="失去焦點提示數據"/>&nbsp;
+                        </div>
+                )
+            }
+
+        }
+
+        ReactDOM.render(<Demo name='white' age='30' sex='18 '/>, document.getElementById('test'))
+
+    </script>
+
+</body>
+
+</html>
