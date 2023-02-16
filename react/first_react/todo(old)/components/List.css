@@ -1,0 +1,22 @@
+.list{
+    width: 480px;
+    height: 640px;
+    margin: 5px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    align-items: center;
+    text-align: center;
+}
+.list>*{
+    margin: 5px;
+    width: 80%;
+    border: 1px solid gray;
+    
+}
+.list>div{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 5px auto;
+}
+

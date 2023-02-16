@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css' integrity='sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==' crossorigin='anonymous'/>
+    <title></title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container">
+          <span class="navbar-brand mb-0">學習開發中_2023-02-11更新</span>
+          <div id="time" class="navbar-brand mb-0 float-end"></div>
+        </div>
+      </nav>
+    <div class="container p-3">
+        
+        <div class="row">
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品1</h5>
+                        <p class="card-text">自定義音樂撥放器</p>
+                        <a href="js/practice/MusicPlayer.html" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品2(參考JS30 Day11)</h5>
+                        <p class="card-text">自定義影片撥放器</p>
+                        <a href="js/day11/test.html" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品3(參考JS30 Day1)</h5>
+                        <p class="card-text">爵士鼓模擬 新增觸碰功能 手機請橫向操作</p>
+                        <a href="js/day1/day1.html" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品4</h5>
+                        <p class="card-text">終極密碼小遊戲</p>
+                        <a href="js/practice/終極密碼.html" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品5</h5>
+                        <p class="card-text">十進制轉二進制or八進制or十六進制</p>
+                        <a href="js/practice/進制轉換.html" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品6</h5>
+                        <p class="card-text">最大公因數計算</p>
+                        <a href="js/practice/求最大公因數.html" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品7(參考JS30 Day15)</h5>
+                        <p class="card-text">備忘錄 localStorage應用</p>
+                        <a href="js/day15/test.html" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品8(參考JS30 Day6)</h5>
+                        <p class="card-text">書目查詢(Google API)</p>
+                        <a href="js/day6/test1.html" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品9(參考JS30 Day30)</h5>
+                        <p class="card-text">打地鼠小遊戲</p>
+                        <a href="js/day30/test.html" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品10</h5>
+                        <p class="card-text">留言板(React+Firebase)歡迎刪減測試</p>
+                        <a href="/react/memo/build/" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">學習作品11</h5>
+                        <p class="card-text">Github用戶搜尋API串接(React axios+bootstrap)</p>
+                        <a href="/react/first_react/API/build" class="btn btn-primary">作品連結</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/practice/jquery-3.6.1.js"></script>
+
+    <script>
+        function showTime() {
+            let getTime = new Date();
+            var h = getTime.getHours();
+            var m = getTime.getMinutes();
+            var s = getTime.getSeconds();
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+            // let time = document.getElementById("time");
+            // time.innerText = "現在時間  " + h + ":" + m + ":" + s;
+            $('#time').text(`現在時間  ${h}:${m}:${s}`);
+            setTimeout(showTime, 1000);
+        }
+
+        showTime();
+
+
+    </script>
+</body>
+
+</html>

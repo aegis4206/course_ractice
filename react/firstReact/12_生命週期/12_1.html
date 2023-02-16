@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .list{
+            height: 150px;
+            width: 300px;
+            background-color: brown;
+            overflow: auto;
+        }
+        .newsItem{
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Post extends React.Component {
+            state = {new:[]}
+
+            componentDidMount(){
+                // this.setState({new:[1,2,3]})
+                setInterval(()=>{
+                    
+                    const newsArr = `新聞${this.state.new.length+1}`
+                    this.setState({new:[newsArr,...this.state.new]})
+                },1000)
+                
+                // return newsArr.map(n=>setNew(newsArr))
+            }
+
+            getSnapshotBeforeUpdate(){
+                console.log('getSnapshotBeforeUpdate')
+                return this.refs.list.scrollHeight
+            }
+            //getSnapshotBeforeUpdate新版才有
+
+            componentDidUpdate(preProps,preState,state){
+                // this.refs.list.scrollTop += this.refs.list.scrollHeight - state
+                this.refs.list.scrollTop = this.state.new.length*50
+            }
+
+            render(){
+                return (
+                    <div className="list" ref='list'>
+                        {this.state.new.map((e,index)=>{
+                            return (<div key={index} className='newsItem' ref='newsItem'>{e}</div>)
+                        })}
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Post />, document.getElementById('root'))
+    </script>
+
+</body>
+
+</html>

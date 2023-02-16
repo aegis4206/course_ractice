@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            
+
+            render() {
+                return (
+                    <div>
+                        <h1 style={{ 'opacity': this.state.opacity }}>閃爍</h1>
+                        <button onClick={this.disappear}>消除</button>
+                    </div>
+
+                )
+            }
+        }
+
+        
+
+        ReactDOM.render(<Demo />, document.getElementById('root'))
+    </script>
+
+</body>
+
+</html>
