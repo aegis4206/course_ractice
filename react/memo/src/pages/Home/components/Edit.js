@@ -27,8 +27,8 @@ const Edit = ({ add, sumbittingStatus ,update }) => {
         sumbittingStatus.current = true
         let Today = new Date();
         let idv = v4()
-        date = date===''? `${Today.getFullYear()}-${(Today.getMonth()+ 1)}-${Today.getDate()}` : date;
-        time = time===''? `${Today.getHours()}:${Today.getMinutes()}` : time;
+        date = date===''? `${Today.getFullYear()}-${(Today.getMonth()+ 1)<10?'0'+(Today.getMonth()+ 1):(Today.getMonth()+ 1)}-${Today.getDate()<10?'0'+Today.getDate():Today.getDate()}` : date;
+        time = time===''? `${Today.getHours()<10?'0'+Today.getHours():Today.getHours()}:${Today.getMinutes()<10?'0'+Today.getMinutes():Today.getMinutes()}` : time;
         let currentData = {
             'id': idv, 
             'note':note,

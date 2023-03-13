@@ -1,12 +1,12 @@
 import React from 'react'
 import { Menu, Form, Container, Message } from 'semantic-ui-react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 // import 'firebase/compat/auth';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import firebaseApp from '../utils/firebase';
 
 
-function Signin() {
+function Signin(props) {
     const navigate = useNavigate();
     const auth = getAuth(firebaseApp);
     const [activeItem, setActiveItem] = React.useState('register');
@@ -14,7 +14,7 @@ function Signin() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [errorMessage, setErrorMessage] = React.useState('');
-    const [isLoading,setIsLoading] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
 
     function onSubmit() {
         setIsLoading(true);
@@ -23,7 +23,7 @@ function Signin() {
                 .then((e) => {
                     console.log('this', this)
                     console.log('e', e)
-                    navigate("/");
+                    navigate("/posts");
                     setIsLoading(false);
                 }).catch(error => {
                     switch (error.code) {
@@ -46,7 +46,7 @@ function Signin() {
                 .then((e) => {
                     console.log('this', this)
                     console.log('e', e)
-                    navigate("/");
+                    navigate("/posts");
                     setIsLoading(false);
                 }).catch(error => {
                     switch (error.code) {
@@ -67,10 +67,11 @@ function Signin() {
     }
 
     return (
+        props.user!==null?<Navigate to='/posts'/>:
         <Container>
             <Menu widths='2'>
-                <Menu.Item active={activeItem == 'register'} onClick={() => {setErrorMessage('');setActiveItem('register')}}>註冊</Menu.Item>
-                <Menu.Item active={activeItem == 'signin'} onClick={() => {setErrorMessage('');setActiveItem('signin')}}>登入</Menu.Item>
+                <Menu.Item active={activeItem == 'register'} onClick={() => { setErrorMessage(''); setActiveItem('register') }}>註冊</Menu.Item>
+                <Menu.Item active={activeItem == 'signin'} onClick={() => { setErrorMessage(''); setActiveItem('signin') }}>登入</Menu.Item>
             </Menu>
             <Form onSubmit={onSubmit}>
                 <Form.Input
@@ -87,6 +88,7 @@ function Signin() {
                 </Form.Button>
             </Form>
         </Container>
+        
     )
 }
 export default Signin;
