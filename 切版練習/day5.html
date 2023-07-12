@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* https://picsum.photos/1200/600?random=10 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(45deg, #fdaecb, #e7597f, #fe8556);
+        }
+
+        .item {
+            width: 600px;
+            margin: auto;
+            
+            display: flex;
+            background-color: #fff;
+            border: 1px solid #888;
+            box-shadow: 0 10px 30px rgba(160, 0, 0, .5);
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .item .pic {
+            width: 50%;
+        }
+
+        .item .pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item .txt {
+            width: 50%;
+            padding: 20px 20px 5px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            /* justify-items: center; */
+            /* align-items: center; */
+        }
+
+        .item .txt h2 {
+            margin-bottom: .4em;
+        }
+
+        .item .txt p {}
+
+        .item .txt .btn {
+            align-self: flex-end;
+            line-height: 1.5em;
+            border: 1px solid #ccc;
+            padding: 0 1em;
+            text-decoration: none;
+            border-radius: 200px;
+            margin-top: auto;
+            /* margin-bottom: 0px; */
+            color: #aaa;
+        }
+
+        .item .txt .btn:hover {
+            color: #3f2de0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="container">
+            <div class="item">
+                <div class="pic">
+                    <img src="https://picsum.photos/400/400?random=10" alt="">
+                </div>
+                <div class="txt">
+                    <h2>馬克宏訪北京表面風光 專家不看好中歐關係回溫</h2>
+                    <p>法國總統馬克宏訪中表面風光，隨行企業主賺得盆滿缽滿。</p>
+                    <a href="#" class="btn">more</a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="pic">
+                    <img src="https://picsum.photos/400/400?random=11" alt="">
+                </div>
+                <div class="txt">
+                    <h2>馬克宏訪北京表面風光 專家不看好中歐關係回溫</h2>
+                    <p>法國總統馬克宏訪中表面風光，隨行企業主賺得盆滿缽滿。</p>
+                    <a href="#" class="btn">more</a>
+                </div>
+            </div>
+            <!-- <div class="item">
+                <div class="pic">
+                    <img src="https://picsum.photos/400/400?random=12" alt="">
+                </div>
+                <div class="txt">
+                    <h2>馬克宏訪北京表面風光 專家不看好中歐關係回溫</h2>
+                    <p>法國總統馬克宏訪中表面風光，隨行企業主賺得盆滿缽滿。</p>
+                    <a href="#" class="btn">more</a>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

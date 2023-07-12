@@ -8,10 +8,10 @@ import 'semantic-ui-css/semantic.min.css'
 const Home = () => (
     <div>
         <h2>陳俊佑</h2>
-        <p>目前剛從科技業離職自學想轉職前端!!以下為簡略的自我介紹，詳細請點選關於我~</p>
+        <p>以下為</p>
         <h3><a href='http://aegis4206.tplinkdns.com:3000/posts' style={{ color: 'red' }}>FindNote</a>為目前功能性較多的作品，結合了React Router v6與Firebase v9後台，功能有會員管理(註冊、登入、阻擋非會員路由、我的文章、我的收藏、會員名稱圖片設定修改)、
         文章管理(發表文章、上傳圖片、搜尋文章、類別篩選、無限捲動、留言功能、案讚、收藏)，詳細請點上方FindNote連結~</h3>
-        <span style={{ color: 'red' }}>登入請使用以下信箱與密碼(請注意勿複製到空格)</span>
+        <span style={{ color: 'red' }}>登入信箱與密碼(已鍵入初始值僅需按登入即可)</span>
         <p>信箱&nbsp;:&nbsp;admin@admin.admin</p>
         <p>密碼&nbsp;:&nbsp;password</p>
         <h2>使用中程式語言以及工具</h2>

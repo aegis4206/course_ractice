@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* https://picsum.photos/1200/600?random=10 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-header {
+            background: linear-gradient(0deg, #fe70d8, #3713c1);
+        }
+
+        .main-header .container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .main-header .logo {
+            width: 100px;
+        }
+
+        .main-header .logo img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .main-header .main-nav {
+            margin: auto;
+        }
+
+        .main-header .main-nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 1em;
+            position: relative;
+            transition: .3s;
+        }
+        .main-header .main-nav a:hover{
+            top:-5px;
+            
+        }
+        .main-header .main-nav a:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            /* width: 50%; */
+            height: 0;
+            top: 30px;
+            border-bottom: 1px solid #fff;
+            transition: .3s;
+        }
+        .main-header .main-nav a:hover:after {
+            left: 0%;
+            right: 0%;
+        }
+
+        .main-header .header-search {
+            display: flex;
+            font-size: 0;
+        }
+
+        .main-header .header-search button {
+            border-radius: 0 200px 200px 0;
+        }
+
+        .main-header .header-search input {
+            border-radius: 200px 0 0 200px;
+            width: 80px;
+        }
+        .main-header .header-search input:focus {
+            outline: none;
+        }
+
+        .main-header .header-search button,
+        .main-header .header-search input {
+            border: none;
+            background-color: #fff;
+            padding: 5px 10px;
+        }
+    </style>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+        crossorigin='anonymous' />
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="" class="logo">
+                <img src="https://picsum.photos/1200/600?random=10" alt="">
+            </a>
+            <nav class="main-nav">
+                <a href="#">相關分類</a>
+                <a href="#">筆記電腦</a>
+                <a href="#">桌上電腦</a>
+                <a href="#">商用電腦</a>
+
+            </nav>
+            <form action="" class="header-search">
+                <input type="search" name="" id="">
+                <button><i class="fa fa-search"></i></button>
+            </form>
+            
+        </div>
+        
+    </header>
+    <script>
+
+    </script>
+</body>
+
+</html>

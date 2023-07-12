@@ -9,10 +9,10 @@ import firebaseApp from '../utils/firebase';
 function Signin(props) {
     const navigate = useNavigate();
     const auth = getAuth(firebaseApp);
-    const [activeItem, setActiveItem] = React.useState('register');
+    const [activeItem, setActiveItem] = React.useState('signin');
     //設定預設 register
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
+    const [email, setEmail] = React.useState('admin@admin.admin');
+    const [password, setPassword] = React.useState('password');
     const [errorMessage, setErrorMessage] = React.useState('');
     const [isLoading, setIsLoading] = React.useState(false);
 
@@ -75,10 +75,10 @@ function Signin(props) {
             </Menu>
             <Form onSubmit={onSubmit}>
                 <Form.Input
-                    label="信箱" value={email} placeholder="請輸入信箱" onChange={(e) => setEmail(e.target.value)}
+                    label="信箱" value={email} placeholder="請輸入信箱"  onChange={(e) => setEmail(e.target.value.trim())}
                 ></Form.Input>
                 <Form.Input
-                    label="密碼" value={password} placeholder="請輸入密碼" onChange={(e) => setPassword(e.target.value)}
+                    label="密碼" value={password} placeholder="請輸入密碼"  onChange={(e) => setPassword(e.target.value.trim())}
                     type="password"
                 ></Form.Input>
                 {errorMessage && <Message negative>{errorMessage}</Message>}

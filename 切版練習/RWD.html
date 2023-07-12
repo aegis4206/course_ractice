@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* https://picsum.photos/1200/600?random=10 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .banner img {
+            width: 100%;
+            vertical-align: middle;
+            /* 除下底空白 */
+        }
+
+        .item .pic img {
+            width: 100%;
+        }
+
+
+
+        .item {
+            width: 100%;
+            margin: 0 0 40px;
+        }
+
+
+
+        .title h2 {
+            text-align: center;
+            font-size: 46px;
+        }
+
+        .text h3 {
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .title p {
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .title {
+            margin: 0 0 20px;
+            padding: 30px 10px;
+            background-color: #ccc;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #aaa;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .wrap {
+            max-width: 1400px;
+            margin: auto;
+            width: 100%
+        }
+
+        .service {
+            margin: 60px 0;
+            background-color: #ffa;
+        }
+
+        .menu_btn {
+            width: 40px;
+            height: 40px;
+            background-color: #000;
+            position: absolute;
+            right: 10px;
+        }
+
+        .header {
+            height: 50px;
+            background-color: #282923;
+            position: relative;
+            align-items: center;
+            display: flex;
+        }
+
+        .logo img {
+            /* vertical-align: middle; */
+        }
+
+        .logo {
+            width: 60px;
+            height: 40px;
+            position: relative;
+            left: 10px;
+        }
+
+        .menu_btn span {
+            opacity: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
+
+        .menu_btn::before {
+            content: '';
+            position: absolute;
+            height: 4px;
+            width: 32px;
+            background-color: #aaa;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            right: 4px;
+            box-shadow: 0px 10px 0px #aaa,
+                0px -10px 0px #aaa;
+        }
+
+        nav {
+            width: 80%;
+            height: calc(100vh - 50px);
+            position: absolute;
+            background-color: #282923;
+            top: 50px;
+            left: -100%;
+            transition: all .5s;
+        }
+
+        #menu_control {
+            position: absolute;
+            opacity: 0;
+        }
+
+        nav a {
+            display: block;
+            text-decoration: none;
+            color: #a6e22c;
+            padding: 10px 20px;
+            /* border-bottom:  1px solid #a6e22c; */
+            text-align: center;
+        }
+
+        nav a::after {
+            content: '';
+            height: 1px;
+            width: 80%;
+            margin: auto;
+            background-color: #a6e22c;
+            display: block;
+        }
+
+        #menu_control:checked~.header nav {
+            left: 0;
+
+        }
+
+        /* 當畫面的最小寬度大於768時 */
+        @media screen and (min-width: 768px) {
+            .item-group {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .item-group .item:nth-child(2) {
+                margin: 0 10px;
+            }
+
+            .service .item .pic,
+            .service .item .text {
+                width: 50%;
+                margin: 0;
+
+            }
+
+            .service .item .pic img {
+                vertical-align: middle;
+            }
+
+            .service .item {
+                display: flex;
+                height: 100%;
+                margin: 0;
+            }
+
+            .service .item .text {
+                display: flex;
+                justify-content: center;
+                padding: 0 20px;
+                box-sizing: border-box;
+            }
+
+
+        }
+
+        @media screen and (min-width: 768px) {
+
+
+            .menu_btn {
+                display: none;
+            }
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            nav {
+                position: relative;
+                left: 0;
+                display: flex;
+                width: auto;
+                height: auto;
+                top: 0;
+            }
+            .logo a{
+                display: block;
+                height: 40px;
+            }
+        }
+
+        @media screen and (min-width: 1400px) {
+            .container{
+                max-width: 1200px;
+                margin: auto;
+            }
+        }
+    </style>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+        crossorigin='anonymous' />
+</head>
+
+<body>
+    <input type="checkbox" name="" id="menu_control">
+    <div class="header">
+        <h1 class="logo">
+            <a href="#">
+                <img src="https://picsum.photos/60/40?random=1" alt="">
+            </a>
+        </h1>
+        <label for="menu_control" class="menu_btn">
+            <span>選單</span>
+        </label>
+        <nav>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+
+        </nav>
+    </div>
+    <div class="container">
+        <div class="banner">
+            <img src="https://picsum.photos/1400/500?random=10" alt="">
+
+
+        </div>
+        <div class="about">
+            <div class="wrap">
+                <div class="title">
+                    <h2>關於我們</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque commodi id et a iusto velit iste
+                        aut,
+                        illo totam cumque, omnis nam exercitationem ducimus deserunt cum iure sequi minima ut!
+                    </p>
+                </div>
+                <div class="item-group">
+                    <div class="item">
+                        <div class="pic">
+                            <img src="https://picsum.photos/300/200?random=10" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>title</h3>
+                            <p>台中捷運昨天發生興富發建案塔吊吊臂掉落軌道意外，造成1死10傷；台中捷運公司今天公布捷運站與列車監視器畫面，還原事發經過，並將對涉案廠商求償至少新台幣2億元以上。</p>
+                        </div>
+
+                    </div>
+                    <div class="item">
+                        <div class="pic">
+                            <img src="https://picsum.photos/300/200?random=11" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>title</h3>
+                            <p>台中市南屯區文心南五路、文心路口興富發一處建案，昨天發生吊臂掉落意外，直接砸破台中捷運綠線的隔音牆，最後釀1死10傷。</p>
+                        </div>
+
+                    </div>
+                    <div class="item">
+                        <div class="pic">
+                            <img src="https://picsum.photos/300/200?random=12" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>title</h3>
+                            <p>台中捷運今天上午恢復全線通車，台中捷運公司代理董事長林良泰上午9時，在事發地點旁的捷運綠線豐樂公園站召開記者會說明，會前他先率主管為罹難的靜宜大學法律系助理教授林淑雅默哀。
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service">
+            <div class="wrap">
+                <div class="item-group">
+                    <div class="item">
+                        <div class="pic">
+                            <img src="https://picsum.photos/300/200?random=13" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>title</h3>
+                            <p>台中捷運今天上午恢復全線通車，台中捷運公司代理董事長林良泰上午9時，在事發地點旁的捷運綠線豐樂公園站召開記者會說明，會前他先率主管為罹難的靜宜大學法律系助理教授林淑雅默哀。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about">
+            <div class="wrap">
+                <div class="title">
+                    <h2>關於我們</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque commodi id et a iusto velit iste
+                        aut,
+                        illo totam cumque, omnis nam exercitationem ducimus deserunt cum iure sequi minima ut!
+                    </p>
+                </div>
+                <div class="item-group">
+                    <div class="item">
+                        <div class="pic">
+                            <img src="https://picsum.photos/300/200?random=14" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>title</h3>
+                            <p>台中捷運昨天發生興富發建案塔吊吊臂掉落軌道意外，造成1死10傷；台中捷運公司今天公布捷運站與列車監視器畫面，還原事發經過，並將對涉案廠商求償至少新台幣2億元以上。</p>
+                        </div>
+
+                    </div>
+                    <div class="item">
+                        <div class="pic">
+                            <img src="https://picsum.photos/300/200?random=15" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>title</h3>
+                            <p>台中市南屯區文心南五路、文心路口興富發一處建案，昨天發生吊臂掉落意外，直接砸破台中捷運綠線的隔音牆，最後釀1死10傷。</p>
+                        </div>
+
+                    </div>
+                    <div class="item">
+                        <div class="pic">
+                            <img src="https://picsum.photos/300/200?random=16" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>title</h3>
+                            <p>台中捷運今天上午恢復全線通車，台中捷運公司代理董事長林良泰上午9時，在事發地點旁的捷運綠線豐樂公園站召開記者會說明，會前他先率主管為罹難的靜宜大學法律系助理教授林淑雅默哀。
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="footer">
+        $copy; copyright 2023 by white
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
