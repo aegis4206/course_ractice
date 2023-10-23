@@ -28,7 +28,7 @@ export default function OrderConfirm(props) {
         const tempOrderList = [...orderList]
         const order = tempOrderList[index]
         if (order.count === 1 && mode === 'min') {
-            return message.warning('已經是最小單位')
+            return message.warning('數量不能為0')
         } else {
             const tempCount = mode === 'plus' ? tempOrderList[index].count + 1 : tempOrderList[index].count - 1
             const tempOrder = { ...order, count: tempCount }
@@ -77,7 +77,7 @@ export default function OrderConfirm(props) {
                 // console.log(record, text, index)
                 return <div >
                     <Space style={{ display: 'flex', justifyContent: 'center' }}>
-                        <MinusCircleTwoTone disabled={true} onClick={() => editHandle(index, 'min')} />
+                        <MinusCircleTwoTone onClick={() => editHandle(index, 'min')} />
                         {text.count}
                         {/* {orderList[index].count} */}
                         <PlusCircleTwoTone onClick={() => editHandle(index, 'plus')} /></Space>
@@ -90,7 +90,7 @@ export default function OrderConfirm(props) {
                             onConfirm={() => deleteHandle(index)}
                             placement="bottom"
                         >
-                            <Tag color='red'>刪除</Tag>
+                            <Button size='small' type='primary' danger>刪除</Button>
                         </Popconfirm>
 
 
@@ -144,23 +144,58 @@ export default function OrderConfirm(props) {
         //     return item
         // })
 
-        try {
-            await setDoc(doc(getFirestore(firebaseApp), "Order", tempOrder.id), tempOrder)
-            setIsLoading(false)
-            setOrderList([])
-            setOrderDrawerOpen(false)
-            return message.success({
+        // firebase
+        // try {
+        //     await setDoc(doc(getFirestore(firebaseApp), "Order", tempOrder.id), tempOrder)
+        //     setIsLoading(false)
+        //     setOrderList([])
+        //     setOrderDrawerOpen(false)
+        //     return message.success({
+        //         content: `訂單成功建立 金額為${orderListCount}`,
+        //         duration: 5
+        //     })
+
+        // }
+        // catch (e) {
+        //     console.error("Error adding document: ", e);
+        //     return message.error({
+        //         content: `伺服器發生錯誤，請稍後再試`,
+        //         duration: 5
+        //     })
+        // }
+
+        //node.js api
+        await fetch('http://aegis4206.tplinkdns.com:8001/api/orderList', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(tempOrder),
+        }).then((response) => {
+            if (!response.ok) {
+              throw new Error('伺服器發生錯誤，請稍後再試');
+            }
+            message.success({
                 content: `訂單成功建立 金額為${orderListCount}`,
                 duration: 5
             })
-        }
-        catch (e) {
-            console.error("Error adding document: ", e);
-            return message.error({
-                content: `伺服器發生錯誤，請稍後再試`,
-                duration: 5
+            setIsLoading(false)
+            setOrderList([])
+            setOrderDrawerOpen(false)
+            return "OK"
+          }).then(() => {
+      
+          }).catch(error => {
+            console.error('Error:', error.message); // 錯誤處理
+            message.error({
+              content: `伺服器發生錯誤，請稍後再試`,
+              duration:5
+              
             })
-        }
+            return "FAIL"
+          });
+
+
 
         // setOrderSubmitList(order)
     }

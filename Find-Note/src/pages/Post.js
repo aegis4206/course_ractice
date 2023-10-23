@@ -228,6 +228,6 @@ export default function Post(props) {
                     }
                 </Comment.Group>
 
-            </> : <Navigate to='/posts' />
+            </> : <Navigate to='/Signin' />
     )
 }

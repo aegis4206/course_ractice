@@ -9,12 +9,7 @@ export default () => {
     const [orderSubmitList, setOrderSubmitList] = useState([]);
 
 
-    useEffect(() => {
-        console.log(orderList)
-    }, [orderList])
-    useEffect(() => {
-        console.log(orderSubmitList)
-    }, [orderSubmitList])
+    
 
 
     return { counter, increment, decrement, orderList, setOrderList, orderSubmitList, setOrderSubmitList };

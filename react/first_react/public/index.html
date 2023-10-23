@@ -11,7 +11,51 @@
         crossorigin='anonymous' />
     <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css' integrity='sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A==' crossorigin='anonymous'/> -->
     <style>
+        .timeline {
+            position: relative;
+            margin: 50px 0 0 0;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 47px;
+            width: 2px;
+            background-color: #ccc;
+            transform: translateX(-50%);
+        }
+        .event {
+            position: relative;
+            margin-bottom: 50px;
+            
+        }
+        .event .date {
+            position: absolute;
+            top: -45px;
+            left: 47px;
+            transform: translateX(-50%);
+            background-color: #fff;
+            padding: 0 10px;
+            font-weight: bold;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            line-height: 40px;
+            min-width: 100px;
+        }
+        .event .description {
+            margin-left: 70px;
+        }
 
+        .event h3 {
+            margin-top: 0;
+            font-weight: bold;
+        }
+
+        .event p {
+            margin: 0;
+            line-height: 1.5;
+        }
     </style>
     <title>first_resume</title>
 </head>

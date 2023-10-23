@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+        .container {
+            width: 768px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root" class="container">
+        <a v-bind:href="url">{{url}}</a>
+        <br>
+        <a :href="url">{{url}}</a>
+        <br>
+        <input type="text" :value="url">
+        <br>
+        <input type="text" v-model="url">
+        <br>
+        <button v-on:click="showInfo">點我</button>
+        <br>
+        <button @click="showInfo(66,$event)">點我</button>
+        <br>
+        <div>姓: <input type="text" :value="first"></div>
+        <br>
+        <div>名: <input type="text" v-model="last"></div>
+        <br>
+        <div>全名 {{first}}-{{last}}</div>
+        <div>全名 {{full}}</div>
+        <button @click="isHot = !isHot">點我</button>
+        <div>今天天氣{{showWeather()}}</div>
+
+        <template></template>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const x = new Vue({
+            // el: '#root',
+            data: {
+                url: '123123',
+                first: '',
+                last: '',
+                isHot: true
+            },
+            methods: {
+                showInfo:(value, event)=> {
+                    console.log(value, event)
+                    console.log(this)
+
+                    // alert('功能測試')
+                },
+                // full(){
+                //     return this.first+'-'+this.last
+                // }
+                showWeather() {
+                    console.log('isHot改變')
+
+                    return this.isHot ? '炎熱' : '涼爽'
+                }
+            },
+            computed: {
+                full: {
+                    get() {
+                        console.log('被調用')
+                        return this.first + '-' + this.last
+                    },
+                    set() {
+                        console.log('被修改')
+                    }
+                }
+                //如果只讀取可以精簡成下面
+                //full()}{
+                //     console.log('被調用')
+                //         return this.first+'-'+this.last
+                // }
+            },
+            watch: {
+                isHot: {
+                    handler(newValue,oldValue) {
+                        newValue,oldValue
+                    },
+                    immediate: true,//初始化執行一次
+                    deep: true,//深度監視
+                }
+                //簡化
+                // isHot(newValue,oldValue){
+                //     newValue,oldValue
+                // }
+            }
+        })
+        x.$mount("#root")
+
+        let person = {
+            name: '小白',
+            sex: '男',
+        }
+
+        Object.defineProperty(person, 'age', {
+            value: 18,
+            enumerable: true,
+            writable: true,
+            configurable: true,
+        })
+
+        console.log(person)
+
+    </script>
+
+</body>
+
+</html>

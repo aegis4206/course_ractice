@@ -34,6 +34,13 @@ export default [
     icon: 'CheckSquareOutlined',
     component: './OrderList',
   },
+  {
+    path: '/apitest',
+    name: 'API測試',
+    icon: 'CheckSquareOutlined',
+    component: './ApiTest',
+  },
+
   // {
   //   path: '/admin',
   //   name: 'admin',

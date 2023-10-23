@@ -3,19 +3,23 @@ import { Routes, Route, Link } from 'react-router-dom';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { Icon } from 'semantic-ui-react'
 
+import Threejs from './pages/threejs';
 import 'semantic-ui-css/semantic.min.css'
 
 const Home = () => (
     <div>
         <h2>陳俊佑</h2>
-        <p>以下為作品集介紹與簡歷，其餘初期學習JS所留下的小作品在上方連結中</p>
-        <h2><a href='http://aegis4206.tplinkdns.com:8000/' style={{ color: '#4096ff' }}>Order System</a></h2>
-        <h3>Order System為餐廳點餐系統網站，結合了React Ant Design Pro與Firebase，功能有餐點訂購(選擇餐廳、餐點分類、購物車管理、訂單送出)、訂單總覽(訂單即時更新、刪除訂單)，詳細請點標題或上方連結~</h3>
+        <p>我經歷了一年左右的學習旅程，積極探索前後端開發領域。這段時間，我對程式碼的編寫和邏輯構建產生了強烈的興趣，並在這個過程中學到了不少有價值的經驗。<br></br>
+            儘管我還是一位新手，但我充滿熱情和渴望學習。我現在擁有一定程度的HTML、CSS、和JavaScript知識，同時正在不斷擴展我的技能，以嘗試新的程式語言和框架。<br></br>
+            我期待能夠與更資深的開發者共事，從他們的經驗中汲取智慧，並在前端和後端領域中不斷精進自己的技能。如果您正在尋找一名熱情洋溢且努力進步的新成員，我將全心全意投入，為團隊做出貢獻。<br></br>
+            感謝您點進來我的學習網站，並看完我的簡介。</p>
+        <h2><a href='http://aegis4206.tplinkdns.com:8000/' style={{ color: '#4096ff' }} target='_blank'>Order System</a></h2>
+        <h3>Order System為餐廳點餐系統網站，結合React Ant Design Pro與Node.JS後端API串接PostgreSQL，並利用WebSocket監聽PostgreSQL trigger即時更新訂單，Echarts即時顯示營業額折線圖，目前功能有餐點訂購(選擇餐廳、餐點分類、購物車管理、訂單送出)、訂單總覽(訂單即時更新、刪除訂單、營業額概覽)，詳細請點標題或上方連結~</h3>
         <span style={{ color: 'red' }}>登入帳號與密碼(已鍵入初始值僅需按登入即可)</span>
         <p>帳號&nbsp;:&nbsp;admin</p>
         <p>密碼&nbsp;:&nbsp;admin</p>
-        <h2><a href='http://aegis4206.tplinkdns.com:3000/posts' style={{ color: '#4096ff' }}>FindNote</a></h2>
-        <h3>FindNote為一個會員制類留言板網站，一樣為React與Firebase資料庫，功能有會員管理(註冊、登入、阻擋非會員路由、我的文章、我的收藏、會員名稱圖片設定修改)、
+        <h2><a href='http://aegis4206.tplinkdns.com:3000/posts' style={{ color: '#4096ff' }} target='_blank'>FindNote</a></h2>
+        <h3>FindNote為一個會員制類留言板網站，為React router與Firebase資料庫，功能有會員管理(註冊、登入、阻擋非會員路由、我的文章、我的收藏、會員名稱圖片設定修改)、
             文章管理(發表文章、上傳圖片、搜尋文章、類別篩選、無限捲動、留言功能、案讚、收藏)，詳細請點標題或上方連結~</h3>
         <span style={{ color: 'red' }}>登入信箱與密碼(已鍵入初始值僅需按登入即可)</span>
         <p>信箱&nbsp;:&nbsp;admin@admin.admin</p>
@@ -31,6 +35,9 @@ const Home = () => (
             <li className='list-inline-item'><Icon name='git' size='big'></Icon>Git</li>
             <li className='list-inline-item'><Icon name='github' size='big'></Icon>GitHub</li>
             <li className='list-inline-item'><Icon name='database' size='big'></Icon>Firebase</li>
+            <li className='list-inline-item'><Icon name='vuejs' size='big'></Icon>Vue</li>
+            <li className='list-inline-item'><Icon name='php' size='big'></Icon>php</li>
+            <li className='list-inline-item'><Icon name='laravel' size='big'></Icon>Laravel</li>
         </ul>
 
         {/* <h3>工作經歷</h3>
@@ -39,55 +46,65 @@ const Home = () => (
         <h3>能力</h3>
         <img className='w-100' src='http://aegis4206.tplinkdns.com/resume/ability.jpg' alt='ability'></img> */}
         <div >
-            <h2>簡歷(詳細請參照<Link style={{ color: '#4096ff' }} to="/about">關於我</Link>(自傳))</h2>
-            <div class="timeline">
-                <div class="event">
-                    <div class="date">2014-2015</div>
-                    <div class="description">
-                        <h3>大學實習-康熙科技</h3>
-                        <p>協助百貨公司POS機的安裝、設定、操作。</p>
+            {/* <h2>簡歷(詳細請參照<Link style={{ color: '#4096ff' }} to="/about">關於我</Link>(自傳))</h2> */}
+            <h2>簡歷</h2>
+            <div className="timeline">
+                <div className="event">
+                    <div className="date">2023-在職中</div>
+                    <div className="description">
+                        <h3>工作經歷-壹立方數位科技有限公司</h3>
+                        <p>公司主要產品eHair美髮pos系統 後台新功能開發與維護(Vue2+Laravel)
+                            <br></br>
+                            其他舊專案維護(台灣黑熊保育協會、極樂寺社團法人台南市淨宗學會)。</p>
                     </div>
                 </div>
-                <div class="event">
-                    <div class="date">2015-2016</div>
-                    <div class="description">
-                        <h3>大學專題-餐廳網站製作</h3>
-                        <p>利用Wordpress結合MySQL來架設餐廳品牌形象網站。</p>
+                <div className="event">
+                    <div className="date">2022-2023</div>
+                    <div className="description">
+                        <h3>離職自學-前端技術</h3>
+                        <p>待進新前端公司更新。</p>
                     </div>
                 </div>
-                <div class="event">
-                    <div class="date">2016-2017</div>
-                    <div class="description">
-                        <h3>產學專案-大永鋁門窗倉儲開發設計</h3>
-                        <p>使用Google APP Inventor 2開發MySQL+PHP線上庫存管理系統APP。</p>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="date">2017-2018</div>
-                    <div class="description">
-                        <h3>碩士論文-物流中心揀貨無人搬運車之派車法則最適化研究</h3>
-                        <p> 以物流中心一情境狀況進行系統模擬，針對派車控制問題進行探討，分析 在不同的系統車數與不同的派車法則下，對物流中心系統績效的影響。</p>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="date">2018-2022</div>
-                    <div class="description">
-                        <h3>工作經歷-台灣大福軟體規劃工程師(系統分析)</h3>
-                        <p>依客戶需求系統分析後規劃成軟體邏輯MCS 軟體需求規劃SECS SEMI通訊規格規劃。</p>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="date">2022-2022</div>
-                    <div class="description">
+                <div className="event">
+                    <div className="date">2022-2022</div>
+                    <div className="description">
                         <h3>工作經歷-群創光電製程設備高級工程師</h3>
                         <p>Rubbing機台的製程與機台保養改造FFU監控系統開發。</p>
                     </div>
                 </div>
-                <div class="event">
-                    <div class="date">2022-2023</div>
-                    <div class="description">
-                        <h3>離職自學-前端技術</h3>
-                        <p>待進新前端公司更新。</p>
+                <div className="event">
+                    <div className="date">2018-2022</div>
+                    <div className="description">
+                        <h3>工作經歷-台灣大福軟體規劃工程師(系統分析)</h3>
+                        <p>依客戶需求系統分析後規劃成軟體邏輯MCS 軟體需求規劃SECS SEMI通訊規格規劃。</p>
+                    </div>
+                </div>
+                <div className="event">
+                    <div className="date">2017-2018</div>
+                    <div className="description">
+                        <h3>碩士論文-物流中心揀貨無人搬運車之派車法則最適化研究</h3>
+                        <p> 以物流中心一情境狀況進行系統模擬，針對派車控制問題進行探討，分析 在不同的系統車數與不同的派車法則下，對物流中心系統績效的影響。</p>
+                    </div>
+                </div>
+                <div className="event">
+                    <div className="date">2016-2017</div>
+                    <div className="description">
+                        <h3>產學專案-大永鋁門窗倉儲開發設計</h3>
+                        <p>使用Google APP Inventor 2開發MySQL+PHP線上庫存管理系統APP。</p>
+                    </div>
+                </div>
+                <div className="event">
+                    <div className="date">2015-2016</div>
+                    <div className="description">
+                        <h3>大學專題-餐廳網站製作</h3>
+                        <p>利用Wordpress結合MySQL來架設餐廳品牌形象網站。</p>
+                    </div>
+                </div>
+                <div className="event">
+                    <div className="date">2014-2015</div>
+                    <div className="description">
+                        <h3>大學實習-康熙科技</h3>
+                        <p>協助百貨公司POS機的安裝、設定、操作。</p>
                     </div>
                 </div>
             </div>
@@ -199,19 +216,21 @@ const App = () => (
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">首頁</Nav.Link>
-                        <Nav.Link as={Link} to="/about">關於我</Nav.Link>
-                        <Nav.Link href="http://aegis4206.tplinkdns.com:8000/">Order System</Nav.Link>
-                        <Nav.Link href="http://aegis4206.tplinkdns.com:3000/posts">FindNote</Nav.Link>
-                        <Nav.Link as={Link} to="/projects">其他學習小作品</Nav.Link>
+                        {/* <Nav.Link as={Link} to="/about">關於我</Nav.Link> */}
+                        <Nav.Link href="http://aegis4206.tplinkdns.com:8000/" target='_blank'>Order System</Nav.Link>
+                        <Nav.Link href="http://aegis4206.tplinkdns.com:3000/posts" target='_blank'>FindNote</Nav.Link>
+                        {/* <Nav.Link as={Link} to="/projects">其他學習小作品</Nav.Link> */}
+                        {/* <Nav.Link as={Link} to="/threejs">ThreeJs</Nav.Link> */}
+
                     </Nav>
                     <Nav >
-                        <Nav.Link href="https://github.com/aegis4206">
+                        <Nav.Link href="https://github.com/aegis4206" target='_blank'>
                             <Icon name='github square' size='big'></Icon>
                         </Nav.Link>
-                        <Nav.Link href="https://www.facebook.com/aegis4206/">
+                        <Nav.Link href="https://www.facebook.com/aegis4206/" target='_blank'>
                             <Icon name='facebook' size='big'></Icon>
                         </Nav.Link>
-                        <Nav.Link href="https://www.linkedin.com/in/%E9%99%B3-%E4%BF%8A%E4%BD%91-19150b266/">
+                        <Nav.Link href="https://www.linkedin.com/in/%E9%99%B3-%E4%BF%8A%E4%BD%91-19150b266/" target='_blank'>
                             <Icon name='linkedin' size='big'></Icon>
                         </Nav.Link>
                     </Nav>
@@ -223,6 +242,8 @@ const App = () => (
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/projects" element={<Projects />} />
+                <Route path="/threejs" element={<Threejs />} />
+
             </Routes>
         </Container>
         <hr></hr>

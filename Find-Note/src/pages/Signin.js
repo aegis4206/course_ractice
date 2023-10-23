@@ -67,28 +67,29 @@ function Signin(props) {
     }
 
     return (
-        props.user!==null?<Navigate to='/posts'/>:
-        <Container>
-            <Menu widths='2'>
-                <Menu.Item active={activeItem == 'register'} onClick={() => { setErrorMessage(''); setActiveItem('register') }}>註冊</Menu.Item>
-                <Menu.Item active={activeItem == 'signin'} onClick={() => { setErrorMessage(''); setActiveItem('signin') }}>登入</Menu.Item>
-            </Menu>
-            <Form onSubmit={onSubmit}>
-                <Form.Input
-                    label="信箱" value={email} placeholder="請輸入信箱"  onChange={(e) => setEmail(e.target.value.trim())}
-                ></Form.Input>
-                <Form.Input
-                    label="密碼" value={password} placeholder="請輸入密碼"  onChange={(e) => setPassword(e.target.value.trim())}
-                    type="password"
-                ></Form.Input>
-                {errorMessage && <Message negative>{errorMessage}</Message>}
-                <Form.Button loading={isLoading}>
-                    {activeItem == 'register' && '註冊'}
-                    {activeItem == 'signin' && '登入'}
-                </Form.Button>
-            </Form>
-        </Container>
-        
+        props.user !== null ? <Navigate to='/posts' /> :
+            <Container>
+                {activeItem === 'signin' && <Message color='orange'>請先登入才能啟用全部功能</Message>}
+                <Menu widths='2'>
+                    <Menu.Item active={activeItem == 'register'} onClick={() => { setErrorMessage(''); setActiveItem('register') }}>註冊</Menu.Item>
+                    <Menu.Item active={activeItem == 'signin'} onClick={() => { setErrorMessage(''); setActiveItem('signin') }}>登入</Menu.Item>
+                </Menu>
+                <Form onSubmit={onSubmit}>
+                    <Form.Input
+                        label="信箱" value={email} placeholder="請輸入信箱" onChange={(e) => setEmail(e.target.value.trim())}
+                    ></Form.Input>
+                    <Form.Input
+                        label="密碼" value={password} placeholder="請輸入密碼" onChange={(e) => setPassword(e.target.value.trim())}
+                        type="password"
+                    ></Form.Input>
+                    {errorMessage && <Message negative>{errorMessage}</Message>}
+                    <Form.Button loading={isLoading}>
+                        {activeItem == 'register' && '註冊'}
+                        {activeItem == 'signin' && '登入'}
+                    </Form.Button>
+                </Form>
+            </Container>
+
     )
 }
 export default Signin;

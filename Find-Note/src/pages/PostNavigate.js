@@ -14,7 +14,7 @@ function PostNavigate(props) {
                         <Grid.Column width={4}><Topics topics={props.topics} /></Grid.Column>
                         <Grid.Column width={10}>
                             <Routes>
-                                <Route path="*" element={<Posts userTable={props.userTable}/>} />
+                                <Route path="*" element={<Posts userTable={props.userTable} user={props.user}/>} />
                                  <Route path=":postId" element={<Post posts={props.posts} user={props.user} userTable={props.userTable}/>} />
                             </Routes>
                         </Grid.Column>

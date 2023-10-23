@@ -1,8 +1,8 @@
-import { PageContainer, ModalForm, ProFormRadio, ProFormDigit, ProFormText } from '@ant-design/pro-components';
+import { PageContainer, ModalForm, ProFormRadio, ProFormDigit, ProFormText, ProFormFieldSet } from '@ant-design/pro-components';
 import { useModel } from '@umijs/max';
-import { Card, theme, Button, Select, Tabs, FloatButton, message } from 'antd';
+import { Card, theme, Button, Select, Tabs, FloatButton, message, Space } from 'antd';
 import React, { useState, useRef, useEffect } from 'react';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, MinusCircleTwoTone, PlusCircleTwoTone } from '@ant-design/icons';
 
 import OrderConfirm from './OrderConfirm';
 import { size } from 'lodash';
@@ -22,6 +22,10 @@ const InfoCard: React.FC<{
 
     return (
         <div
+            onClick={() => {
+                setMenuSelect(props)
+                setMenuModalOpen(true)
+            }}
             style={{
                 backgroundColor: token.colorBgContainer,
                 boxShadow: token.boxShadow,
@@ -86,8 +90,8 @@ const InfoCard: React.FC<{
                     {desc}
                 </div>
                 <Button onClick={() => {
-                    setMenuSelect(props)
-                    setMenuModalOpen(true)
+                    // setMenuSelect(props)
+                    // setMenuModalOpen(true)
                 }}>
                     加入購物車
                 </Button>
@@ -106,7 +110,7 @@ const menu = {
         {
             key: 1,
             index: 1,
-            title: "泰式打拋諸日式飯糰搭法棍",
+            title: "日式飯糰搭法棍",
             desc: "生菜沙拉、飲料、濃湯",
             class: '主食套餐',
             price: { M: 260 }
@@ -146,7 +150,7 @@ const menu = {
         {
             key: 6,
             index: 6,
-            title: "嫩肩牛排佐六街特製醬料",
+            title: "嫩肩牛排",
             desc: "生菜沙拉、飲料、濃湯",
             class: '主食套餐',
             price: { M: 360 }
@@ -170,7 +174,7 @@ const menu = {
         {
             key: 9,
             index: 9,
-            title: "義式白醬蘑菇培根",
+            title: "白醬蘑菇培根",
             desc: "文創新興早午餐",
             class: '義大利麵',
             price: { M: 120 }
@@ -178,7 +182,7 @@ const menu = {
         {
             key: 10,
             index: 10,
-            title: "義式番茄肉醬",
+            title: "番茄肉醬",
             desc: "文創新興早午餐",
             class: '義大利麵',
             price: { M: 120 }
@@ -186,7 +190,7 @@ const menu = {
         {
             key: 11,
             index: 11,
-            title: "泰式打拋諸",
+            title: "泰式打拋豬",
             desc: "文創新興早午餐",
             class: '義大利麵',
             price: { M: 120 }
@@ -242,16 +246,16 @@ const menu = {
         {
             key: 18,
             index: 18,
-            title: "日式厚切炸豬排佐生菜",
-            desc: "文創新興早午餐",
+            title: "日式厚切炸豬排",
+            desc: "佐生菜",
             class: '單點',
             price: { M: 130 }
         },
         {
             key: 19,
             index: 19,
-            title: "舒肥雞胸肉佐生菜",
-            desc: "文創新興早午餐",
+            title: "舒肥雞胸肉",
+            desc: "佐生菜",
             class: '單點',
             price: { M: 160 }
         },
@@ -282,7 +286,7 @@ const menu = {
         {
             key: 23,
             index: 23,
-            title: "冷淬氮氣咖啡",
+            title: "冷淬咖啡",
             desc: "文創新興早午餐",
             class: '咖啡',
             price: { M: 70 }
@@ -290,7 +294,7 @@ const menu = {
         {
             key: 24,
             index: 24,
-            title: "冷淬氮氣咖啡拿鐵",
+            title: "冷淬咖啡拿鐵",
             desc: "文創新興早午餐",
             class: '咖啡',
             price: { M: 80 }
@@ -314,7 +318,7 @@ const menu = {
         {
             key: 27,
             index: 27,
-            title: "冷淬氮氣烏龍紅茶",
+            title: "冷淬烏龍紅茶",
             desc: "文創新興早午餐",
             class: '茶飲',
             price: { M: 70 }
@@ -322,7 +326,7 @@ const menu = {
         {
             key: 28,
             index: 28,
-            title: "冷淬氮氣烏龍紅奶茶",
+            title: "冷淬烏龍紅奶茶",
             desc: "文創新興早午餐",
             class: '茶飲',
             price: { M: 80 }
@@ -808,6 +812,7 @@ export default function MenuList() {
     const [orderDrawerOpen, setOrderDrawerOpen] = useState(false)
     const [menuSelect, setMenuSelect] = useState({})
     const [orderListCount, setOrderListCount] = useState([])
+    const orderModalForm = useRef()
 
 
     useEffect(() => {
@@ -824,7 +829,7 @@ export default function MenuList() {
 
     useEffect(() => {
         const handleScroll = (window) => {
-            const tabsElement = tabsRef.current.offsetTop;
+            const tabsElement = tabsRef && tabsRef.current.offsetTop;
             // const rect = tabsElement.getBoundingClientRect();
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             let isFixed = false
@@ -903,6 +908,17 @@ export default function MenuList() {
     //     }
 
     // }, [orderList])
+
+    const addOnHandle = (mode) => {
+        const currentValue = orderModalForm.current.getFieldValue('foodcount')
+        console.log(mode, currentValue)
+        if (currentValue === 1 && mode === 'min') {
+            return message.warning('數量不能為0')
+        } else {
+            const tempCount = mode === 'plus' ? currentValue + 1 : currentValue - 1
+            orderModalForm.current.setFieldValue('foodcount', tempCount)
+        }
+    }
 
     return (
 
@@ -984,6 +1000,7 @@ export default function MenuList() {
 
             {menuModalOpen && Object.keys(menuSelect).length !== 0 &&
                 <ModalForm
+                    formRef={orderModalForm}
                     open={menuModalOpen}
                     onOpenChange={setMenuModalOpen}
                     title={menuSelect.title}
@@ -1013,6 +1030,11 @@ export default function MenuList() {
                         min={1}
                         initialValue={1}
                         rules={[{ required: true, message: '請選擇數量!' }]}
+                        fieldProps={{
+                            addonAfter: <PlusCircleTwoTone style={{ fontSize: 18 }} onClick={() => addOnHandle("plus")} />,
+                            addonBefore: <MinusCircleTwoTone style={{ fontSize: 18 }} onClick={() => addOnHandle("min")} />,
+                        }}
+                        width={150}
                     />
                     <ProFormText
                         label="備註"

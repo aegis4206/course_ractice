@@ -2029,6 +2029,7 @@ const RulesSetting: React.FC = () => {
             // console.log('actionRender', actionRender)
             return <></>
           }}
+          on
         >
           {(f, index, action) => {
             // console.log(f, index, action)
@@ -2041,6 +2042,7 @@ const RulesSetting: React.FC = () => {
                     name="type"
                     label={ruleArray[index]?.name.split("_").map((part: any) =>
                       part.charAt(0).toUpperCase() + part.slice(1)).join("_")}
+                    
                   />
                   <ProFormDependency name={['type']}>
                     {({ type }) => {

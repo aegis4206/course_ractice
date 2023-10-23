@@ -5,11 +5,8 @@
     "\\js\\practice",
     "\\js\\practice\\BackEnd",
     "\\js\\practice\\BackEnd\\ASPnet",
-    "\\js\\practice\\BackEnd\\ASPnet\\01Todo",
     "\\js\\practice\\BackEnd\\ASPnet\\01Todo\\Controllers",
-    "\\js\\practice\\BackEnd\\ASPnet\\02Controller",
     "\\js\\practice\\BackEnd\\ASPnet\\02Controller\\Controllers"
   ],
-  "SelectedNode": "\\js\\practice\\BackEnd\\ASPnet\\02Controller\\Controllers\\MultiFileUploadController.cs",
   "PreviewInSolutionExplorer": false
 }

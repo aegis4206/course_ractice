@@ -9,7 +9,7 @@ import firebaseApp from "../utils/firebase"
 import Post from "../components/Post";
 import { useLocation } from "react-router-dom";
 
-function Posts({ userTable }) {
+function Posts({ userTable,user }) {
     const location = useLocation()
     const urlSearchParams = new URLSearchParams(location.search)
     const currentTopic = urlSearchParams.get('topic')
@@ -94,7 +94,7 @@ function Posts({ userTable }) {
             <Item.Group>
                 {
                     posts.map((post) => {
-                        return <Post key={post.id} post={post} userTable={userTable} />
+                        return <Post key={post.id} post={post} userTable={userTable} user={user}/>
                     })}
             </Item.Group>
             <Waypoint onEnter={() => {
