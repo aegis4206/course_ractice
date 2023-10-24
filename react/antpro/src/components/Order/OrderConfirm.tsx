@@ -4,6 +4,7 @@ import { Card, theme, Button, Select, Tabs, FloatButton, Drawer, Table, Space, T
 import React, { useState, useRef, useEffect } from 'react';
 import { PlusCircleTwoTone, MinusCircleTwoTone, QuestionCircleOutlined } from '@ant-design/icons';
 import { v4 } from 'uuid'
+import moment from 'moment';
 
 import { getFirestore, getDocs, collection, setDoc, doc, deleteDoc } from "firebase/firestore";
 
@@ -24,7 +25,6 @@ export default function OrderConfirm(props) {
     const [isLoading, setIsLoading] = useState(false)
 
     const editHandle = (index, mode) => {
-        console.log(index, mode)
         const tempOrderList = [...orderList]
         const order = tempOrderList[index]
         if (order.count === 1 && mode === 'min') {
@@ -32,7 +32,6 @@ export default function OrderConfirm(props) {
         } else {
             const tempCount = mode === 'plus' ? tempOrderList[index].count + 1 : tempOrderList[index].count - 1
             const tempOrder = { ...order, count: tempCount }
-            console.log(tempOrder)
             tempOrderList.splice(index, 1, tempOrder)
         }
         // tempOrderList[index].count = mode === 'plus' ? tempOrderList[index].count + 1 : tempOrderList[index].count - 1
@@ -114,7 +113,6 @@ export default function OrderConfirm(props) {
 
     useEffect(() => {
         if (orderDrawerOpen && orderList.length !== 0) {
-            console.log('++')
             const total = orderList.reduce((accumulator, currentValue) => {
                 const size = currentValue.size
 
@@ -127,10 +125,9 @@ export default function OrderConfirm(props) {
     }, [orderList, orderDrawerOpen])
 
     const orderSubmit = async (values) => {
-        console.log(values)
         const tempSubmitList = [...orderSubmitList]
-        const time = new Date().toLocaleString()
-        console.log(time)
+        // const time = new Date().toLocaleString()
+        const time = moment().format("YYYY-MM-DD HH:mm:ss")
         const tempOrder = {
             ...values,
             selectedRestaurant,
@@ -173,7 +170,7 @@ export default function OrderConfirm(props) {
             body: JSON.stringify(tempOrder),
         }).then((response) => {
             if (!response.ok) {
-              throw new Error('伺服器發生錯誤，請稍後再試');
+                throw new Error('伺服器發生錯誤，請稍後再試');
             }
             message.success({
                 content: `訂單成功建立 金額為${orderListCount}`,
@@ -183,17 +180,17 @@ export default function OrderConfirm(props) {
             setOrderList([])
             setOrderDrawerOpen(false)
             return "OK"
-          }).then(() => {
-      
-          }).catch(error => {
+        }).then(() => {
+
+        }).catch(error => {
             console.error('Error:', error.message); // 錯誤處理
             message.error({
-              content: `伺服器發生錯誤，請稍後再試`,
-              duration:5
-              
+                content: `伺服器發生錯誤，請稍後再試`,
+                duration: 5
+
             })
             return "FAIL"
-          });
+        });
 
 
 

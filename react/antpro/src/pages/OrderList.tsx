@@ -146,7 +146,8 @@ const Order: React.FC = () => {
       dataIndex: 'method',
       key: 'method',
       render: (_, text) => {
-        const time = text.time.split(' ')
+        console.log(text.time)
+        const time = new Date(text.time).toLocaleString().split(' ')
         return <>
           <div>{text.selectedRestaurant}</div>
           <div>{time[0]}</div>
@@ -234,7 +235,7 @@ const Order: React.FC = () => {
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: reversed.map(i => i.time)
+        data: reversed.map(i => new Date(i.time).toLocaleString())
       },
       yAxis: {
         type: 'value'
@@ -245,7 +246,7 @@ const Order: React.FC = () => {
           type: 'line',
           // stack: 'Total',
           data: reversed.map(i => {
-            if(i.selectedRestaurant === '早午餐店'){
+            if (i.selectedRestaurant === '早午餐店') {
               return i.total
             }
             return 0
@@ -256,7 +257,7 @@ const Order: React.FC = () => {
           type: 'line',
           // stack: 'Total',
           data: reversed.map(i => {
-            if(i.selectedRestaurant === '在地麵攤'){
+            if (i.selectedRestaurant === '在地麵攤') {
               return i.total
             }
             return 0
@@ -267,7 +268,7 @@ const Order: React.FC = () => {
           type: 'line',
           // stack: 'Total',
           data: reversed.map(i => {
-            if(i.selectedRestaurant === '台南牛肉湯'){
+            if (i.selectedRestaurant === '台南牛肉湯') {
               return i.total
             }
             return 0

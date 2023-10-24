@@ -829,7 +829,7 @@ export default function MenuList() {
 
     useEffect(() => {
         const handleScroll = (window) => {
-            const tabsElement = tabsRef && tabsRef.current.offsetTop;
+            const tabsElement = tabsRef && tabsRef.current?.offsetTop;
             // const rect = tabsElement.getBoundingClientRect();
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             let isFixed = false

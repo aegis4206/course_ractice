@@ -12,14 +12,14 @@ const Home = () => (
         <p>我經歷了一年左右的學習旅程，積極探索前後端開發領域。這段時間，我對程式碼的編寫和邏輯構建產生了強烈的興趣，並在這個過程中學到了不少有價值的經驗。<br></br>
             儘管我還是一位新手，但我充滿熱情和渴望學習。我現在擁有一定程度的HTML、CSS、和JavaScript知識，同時正在不斷擴展我的技能，以嘗試新的程式語言和框架。<br></br>
             我期待能夠與更資深的開發者共事，從他們的經驗中汲取智慧，並在前端和後端領域中不斷精進自己的技能。如果您正在尋找一名熱情洋溢且努力進步的新成員，我將全心全意投入，為團隊做出貢獻。<br></br>
-            感謝您點進來我的學習網站，並看完我的簡介。</p>
+            感謝您點進來我的簡歷網站。</p>
         <h2><a href='http://aegis4206.tplinkdns.com:8000/' style={{ color: '#4096ff' }} target='_blank'>Order System</a></h2>
-        <h3>Order System為餐廳點餐系統網站，結合React Ant Design Pro與Node.JS後端API串接PostgreSQL，並利用WebSocket監聽PostgreSQL trigger即時更新訂單，Echarts即時顯示營業額折線圖，目前功能有餐點訂購(選擇餐廳、餐點分類、購物車管理、訂單送出)、訂單總覽(訂單即時更新、刪除訂單、營業額概覽)，詳細請點標題或上方連結~</h3>
+        <h3>Order System為餐廳點餐系統網站，為Node.JS後端API串接PostgreSQL的類MVC架構，並利用WebSocket監聽PostgreSQL trigger即時更新訂單，外觀部分使用Ant Design Pro UI，Echarts即時顯示營業額折線圖，目前功能有餐點訂購(選擇餐廳、餐點分類、購物車管理、訂單送出)、訂單總覽(訂單即時更新、刪除訂單、營業額概覽)，詳細請點標題或上方連結~</h3>
         <span style={{ color: 'red' }}>登入帳號與密碼(已鍵入初始值僅需按登入即可)</span>
         <p>帳號&nbsp;:&nbsp;admin</p>
         <p>密碼&nbsp;:&nbsp;admin</p>
         <h2><a href='http://aegis4206.tplinkdns.com:3000/posts' style={{ color: '#4096ff' }} target='_blank'>FindNote</a></h2>
-        <h3>FindNote為一個會員制類留言板網站，為React router與Firebase資料庫，功能有會員管理(註冊、登入、阻擋非會員路由、我的文章、我的收藏、會員名稱圖片設定修改)、
+        <h3>FindNote為一個會員制類留言板網站，為React router與Firebase資料庫的SPA架構，外觀部分使用Semantic UI，功能有會員管理(註冊、登入、阻擋非會員路由、我的文章、我的收藏、會員名稱圖片設定修改)、
             文章管理(發表文章、上傳圖片、搜尋文章、類別篩選、無限捲動、留言功能、案讚、收藏)，詳細請點標題或上方連結~</h3>
         <span style={{ color: 'red' }}>登入信箱與密碼(已鍵入初始值僅需按登入即可)</span>
         <p>信箱&nbsp;:&nbsp;admin@admin.admin</p>

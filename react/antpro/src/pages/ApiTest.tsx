@@ -27,7 +27,7 @@ const Welcome: React.FC = () => {
 
 
   const urlTransfer = (number: number) => {
-    const url = `http://localhost/react/antpro/src/poker_img/poker(${number}).jpg`
+    const url = `http://aegis4206.tplinkdns.com//react/antpro/src/poker_img/poker(${number}).jpg`
     console.log(url)
     return url
   }
